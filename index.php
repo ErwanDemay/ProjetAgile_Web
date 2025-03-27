@@ -1,3 +1,3 @@
 <?php
-echo "Website Works !!";
+echo "Index Works !!";
 ?>
