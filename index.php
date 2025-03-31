@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('./modeles/dao/dao.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,23 +15,23 @@ include('./modeles/dao/dao.php');
   <nav>
     <ul>
       <li><a class="navBoutton" href="./index.php">Accueil</a></li>
-      <li><a class="navBoutton" href="./index.php?controleur=session">Prochaines sessions</a></li>
+      <li><a class="navBoutton" href="./index.php?controleur=sessions">Prochaines sessions</a></li>
 
       <?php
-      if(isset($_SESSION['utilisateurConnecte'])){ 
-        $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
-        if($utilisateurConnecte->getRole() == "admin"){
+      //if(isset($_SESSION['utilisateurConnecte'])){ 
+      //  $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+      //  if($utilisateurConnecte->getRole() == "admin"){
           echo "".
               "<li class='sousMenu'>".
                 "<a class='navBoutton'>Gestion</a>".
                 "<ul class='sousMenuUl'>".
-                  "<li><a href='./index.php?controleur=session'>Sessions</a></li>".
-                  "<li><a href='./index.php?controleur=utilisateur'>Utilisateurs</a></li>".
-                  "<li><a href='./index.php?controleur=recette'>Recettes</a></li>".
+                  "<li><a href='./index.php?controleur=sessions'>Sessions</a></li>".
+                  "<li><a href='./index.php?controleur=utilisateurs'>Utilisateurs</a></li>".
+                  "<li><a href='./index.php?controleur=recettes'>Recettes</a></li>".
                 "</ul>".
               "</li>";
-        }
-      }?>
+      //  }
+      //}?>
 
     </ul>
   </nav>
@@ -45,16 +44,16 @@ include('./modeles/dao/dao.php');
                     
             switch ($controleur){
                     case 'default':
-                        include("./vues/v_index.php"); 
+                        require_once("./vues/v_index.php"); 
                         break;
                     case 'sessions' : 
-                        include("./controleurs/controleurSession.php"); 
+                        require_once("./controleurs/controleurSession.php"); 
                         break;
-                    case 'utilisateur' : 
-                        include("./controleurs/controleurUtilisateur.php"); 
+                    case 'utilisateurs' : 
+                        require_once("./controleurs/controleurUtilisateur.php"); 
                         break;
-                    case 'utilisateur' : 
-                        include("./controleurs/controleurUtilisateur.php"); 
+                    case 'recettes' : 
+                        require_once("./controleurs/controleurRecette.php"); 
                         break;
             }
 ?>
