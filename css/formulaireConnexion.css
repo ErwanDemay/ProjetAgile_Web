@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end; 
+    background-color: black;
+    padding: 15px 0;
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+}
+
+.nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    background-color: blue;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.nav-image {
+    display: flex;
+    align-items: center;
+}
+
+.nav-image img {
+    height: 30px; 
+    margin-left: 15px; 
+    padding-right: 20px; 
+    
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    justify-content: center;
+    flex: 1;
+}
+
+.navbar svg{
+    width: 25px;   
+    margin-right: 20px;
+    fill: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes pour le texte et l'image */
+    width: 80%;
+    max-width: 1200px; /* Taille maximale adaptée aux grands écrans */
+    height: 800px; /* Hauteur ajustée */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 10px; /* Coins arrondis */
+    overflow: hidden; /* Empêche tout débordement */
+    margin-left: 20%;
+}
+.form-container {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.form-container h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+.form-container label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 18px;
+}
+.form-container button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.form-container button:hover {
+    background-color: #0056b3;
+}
+.form-container a {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+.form-container a:hover {
+    text-decoration: underline;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0; /* Couleur par défaut */
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image remplit la colonne sans débordement */
+}
