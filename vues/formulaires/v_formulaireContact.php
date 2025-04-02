@@ -1,1 +1,0 @@
-<p>Formulaire de contact</p>
