@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header">Image 1</div>
                 <div class="card-body">
-                <img src="../images/logoCookFusion.png" alt="Image 1" class="card-image">
+                <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
                 </div>
                 <button class="card-button">Voir plus</button>
             </div>
