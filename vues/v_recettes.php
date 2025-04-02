@@ -41,6 +41,13 @@
                 <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
                 </div>
                 <button class="card-button">Voir plus</button>
+                <?php
+                if(isset($_SESSION['utilisateurConnecte'])){ 
+                    $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                    if($utilisateurConnecte->getRole() == "admin"){
+                      echo "code des boutons vers modif etc";
+                    }
+                  }?>
             </div>
         </section>
     </main>
