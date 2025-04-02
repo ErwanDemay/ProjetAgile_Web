@@ -48,17 +48,16 @@ CREATE TABLE Type(
 #------------------------------------------------------------
 
 CREATE TABLE Recette(
-        id          Int  Auto_increment  NOT NULL ,
-        libelle     Varchar (255) NOT NULL ,
-        description Varchar (1000) NOT NULL ,
-        uneImage    Varchar (255) NOT NULL ,
-        dateAjout   Date NOT NULL ,
-        id_Type     Int NOT NULL
-	,CONSTRAINT Recette_PK PRIMARY KEY (id)
-
-	,CONSTRAINT Recette_Type_FK FOREIGN KEY (id_Type) REFERENCES Type(id)
-)ENGINE=InnoDB;
-
+        id          INT AUTO_INCREMENT NOT NULL,
+        libelle     VARCHAR(255) NOT NULL,
+        description VARCHAR(1000) NOT NULL,
+        uneImage    LONGBLOB NOT NULL,
+        dateAjout   DATE NOT NULL,
+        id_Type     INT NOT NULL,
+        
+        CONSTRAINT Recette_PK PRIMARY KEY (id),
+        CONSTRAINT Recette_Type_FK FOREIGN KEY (id_Type) REFERENCES Type(id)
+) ENGINE=InnoDB;
 
 #------------------------------------------------------------
 # Table: Reserver
