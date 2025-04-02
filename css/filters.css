@@ -1,0 +1,21 @@
+.menu {
+  display: flex;
+  margin-top: 1.5vh; /* Réduit de 2vh à 1.5vh */
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-button {
+  padding: 1vw 2vw; /* Réduit de 2vw 4vw à 1.5vw 3vw */
+  background-color: #fff;
+  border: 0.15vw solid #ddd; /* Réduit de 0.2vw à 0.15vw */
+  border-radius: 2vw;
+  margin: 0 1vw; /* Pas de changement */
+  cursor: pointer;
+  font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
+}
+
+.menu-button:hover {
+  background-color: #f0f0f0;
+}

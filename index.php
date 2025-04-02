@@ -15,9 +15,16 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CookFusions Lab</title>
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/filters.css">
+  <link rel="stylesheet" href="css/search.css">
 
 </head>
 <body>
+  <header>
 <nav class="navbar">
             <a href="./index.php" class="nav-title">CookFusions Lab</a>
         <div class="nav-links">
@@ -36,6 +43,7 @@ session_start();
 
     </ul>
   </nav>
+  </header>
 
 <?php
             if (isset($_GET['controleur']))
@@ -59,6 +67,10 @@ session_start();
             }
 ?>
 
+
+<footer>
 <a href='./index.php'>Cliquez ici pour voir nos mentions légales</a>
+</footer>
 </body>
+
 </html>

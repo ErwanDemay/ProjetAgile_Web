@@ -1,0 +1,11 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  /* margin-bottom: 3vh; Réduit de 5vh à 3vh */
+}

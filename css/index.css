@@ -1,200 +1,59 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-.navbar {
-    display: flex;
-    justify-content: flex-end; 
-    background-color: black;
-    padding: 15px 0;
-    position: relative;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    position: relative;
-}
-
-.nav-indicator {
-    position: absolute;
-    bottom: 0;
-    height: 3px;
-    background-color: blue;
-    transition: all 0.3s ease-in-out;
-}
-
-
-.nav-image {
-    display: flex;
-    align-items: center;
-}
-
-.nav-image img {
-    height: 30px; 
-    margin-left: 15px; 
-    padding-right: 20px; 
-    
-}
-
-.nav-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    text-align: left;
-    justify-content: center;
-    flex: 1;
-}
-
-.navbar svg{
-    width: 25px;   
-    margin-right: 20px;
-    fill: white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Général */
 body {
-  font-family: Arial, sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-}
-
-header {
+  /* background-color: purple; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 3vh; /* Réduit de 5vh à 3vh */
+  position: relative;
 }
+
+/* Header */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Contenu principal */
+main {
+  flex: 1 0 auto;
+  /* background-color: purple; */
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: 80px; /* Ajout d'une marge pour compenser le header fixe */
+}
+
+/* Footer */
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: black;
+  position: relative;
+  z-index: 1;
+}
+
 /* DEBUT DU CSS POUR LA BARRE DE RECHERCHE */
-.search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3vh; /* Réduit de 5vh à 3vh */
-  width: 75%;
-  position: relative; /* Permet de positionner l'icône de manière absolue */
-}
-
-.search-container svg {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 27%; /* Ajout de cette propriété pour aligner à droite */
-  top: 50%; /* Centrer verticalement */
-  transform: translateY(-50%); /* Ajustement fin de la position verticale */
-}
-
-.search-bar {
-  padding: 1vw; /* Réduit de 2vw à 1.5vw */
-  font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
-  border-radius: 2vw; /* Réduit de 0.5vw à 0.4vw */
-  border: 0.15vw solid #ccc; /* Réduit de 0.2vw à 0.15vw */
-  margin-right: 1.5vw; /* Réduit de 2vw à 1.5vw */
-  text-align: left;
-  width: 50%;
-}
-
-.search-button {
-  background-color: #6a4dff;
-  color: white;
-  padding: 1.5vw; /* Réduit de 2vw à 1.5vw */
-  border: none;
-  border-radius: 0.4vw; /* Réduit de 0.5vw à 0.4vw */
-  cursor: pointer;
-}
 /* FIN DU CSS POUR LA BARRE DE RECHERCHE */
 
 /* DEBUT DU CSS POUR LE MENU: ENTREE, PLAT, DESSERT */
 
-.menu {
-  display: flex;
-  margin-top: 1.5vh; /* Réduit de 2vh à 1.5vh */
-  width: 75%;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-button {
-  padding: 1vw 2vw; /* Réduit de 2vw 4vw à 1.5vw 3vw */
-  background-color: #fff;
-  border: 0.15vw solid #ddd; /* Réduit de 0.2vw à 0.15vw */
-  border-radius: 2vw;
-  margin: 0 1vw; /* Pas de changement */
-  cursor: pointer;
-  font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
-}
-
-.menu-button:hover {
-  background-color: #f0f0f0;
-}
-
 /* FIN DU CSS POUR LE MENU: ENTREE, PLAT, DESSERT */
 
 /* DEBUT DU CSS POUR LES IMAGES DANS LES CARDS */
-
-.card-container {
-  display: flex;
-  justify-content: center;
-  gap: 3vw; /* Réduit de 4vw à 3vw */
-  margin: 10vh; /* Réduit de 12vh à 10vh */
-}
-
-.card {
-  width: 30vw; /* Réduit de 25vw à 20vw */
-  background-color: #e0e0e0;
-  border-radius: 1vw; /* Pas de changement */
-  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.1); /* Réduit les valeurs de 0.5vw 1vw à 0.4vw 0.8vw */
-  overflow: hidden;
-  text-align: left;
-}
-
-.card-header {
-  height: 4vh; /* Réduit de 5vh à 4vh */
-  margin-top: 2vh;
-  text-align: center;
-}
-
-.card-body {
-  height: 40vh; /* Réduit de 25vh à 20vh */
-}
-
-.card-button {
-  background-color: #0066ff;
-  color: white;
-  border: none;
-  padding: 0.75vw; /* Réduit de 2vw à 1.5vw */
-  width: 30%; /* Gardé à 50% */
-  border-radius: 0.8vw; /* Réduit de 1vw à 0.8vw */
-  cursor: pointer;
-  font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
-  margin-bottom: 0.50vh;
-  margin-top: 2vh;
-  margin-left: 1vw;
-}
-
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Assure que l'image couvre toute la zone sans déformation */
-}
-
-.card-button:hover {
-  background-color: #0055cc;
-}
-
 
 /* FIN DU CSS POUR LES IMAGES DANS LES CARDS */
