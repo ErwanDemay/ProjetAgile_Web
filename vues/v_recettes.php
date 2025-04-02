@@ -22,23 +22,23 @@
     <main>
         <section class="card-container">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header">Image 1</div>
                 <div class="card-body">
-                <img src="image1.jpg" alt="Image 1" class="card-image">
+                <img src="../images/logoCookFusion.png" alt="Image 1" class="card-image">
                 </div>
                 <button class="card-button">Voir plus</button>
             </div>
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header">Image 2</div>
                 <div class="card-body">
-                <img src="image2.jpg" alt="Image 2" class="card-image">
+                <img src="../images/logoCookFusion.png" alt="Image 2" class="card-image">
                 </div>
                 <button class="card-button">Voir plus</button>
             </div>
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header">Image 3</div>
                 <div class="card-body">
-                <img src="image3.jpg" alt="Image 3" class="card-image">
+                <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
                 </div>
                 <button class="card-button">Voir plus</button>
             </div>

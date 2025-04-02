@@ -24,8 +24,8 @@ header {
 
 .search-container svg {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   right: 27%; /* Ajout de cette propriété pour aligner à droite */
   top: 50%; /* Centrer verticalement */
   transform: translateY(-50%); /* Ajustement fin de la position verticale */
@@ -92,11 +92,13 @@ header {
   border-radius: 1vw; /* Pas de changement */
   box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.1); /* Réduit les valeurs de 0.5vw 1vw à 0.4vw 0.8vw */
   overflow: hidden;
-  text-align: center;
+  text-align: left;
 }
 
 .card-header {
   height: 4vh; /* Réduit de 5vh à 4vh */
+  margin-top: 2vh;
+  text-align: center;
 }
 
 .card-body {
@@ -108,13 +110,24 @@ header {
   color: white;
   border: none;
   padding: 0.75vw; /* Réduit de 2vw à 1.5vw */
-  width: 50%; /* Gardé à 50% */
+  width: 30%; /* Gardé à 50% */
   border-radius: 0.8vw; /* Réduit de 1vw à 0.8vw */
   cursor: pointer;
   font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
+  margin-bottom: 0.50vh;
+  margin-top: 2vh;
+  margin-left: 1vw;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre toute la zone sans déformation */
 }
 
 .card-button:hover {
   background-color: #0055cc;
 }
+
+
 /* FIN DU CSS POUR LES IMAGES DANS LES CARDS */
