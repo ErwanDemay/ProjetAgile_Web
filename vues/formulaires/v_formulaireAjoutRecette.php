@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire avec Image</title>
-    <link rel="stylesheet" href="../../css/formulaireAjoutRecette.css">
-</head>
 <body>
+    
     <div class="form-container">
         <h2>Ajouter une recette</h2>
         <form action="#" method="post" enctype="multipart/form-data">
@@ -33,5 +26,5 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+    </body>
+

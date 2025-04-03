@@ -1,83 +1,19 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-.navbar {
-    display: flex;
-    justify-content: flex-end; 
-    background-color: black;
-    padding: 15px 0;
-    position: relative;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    position: relative;
-}
-
-.nav-indicator {
-    position: absolute;
-    bottom: 0;
-    height: 3px;
-    background-color: blue;
-    transition: all 0.3s ease-in-out;
-}
-
-
-.nav-image {
-    display: flex;
-    align-items: center;
-}
-
-.nav-image img {
-    height: 30px; 
-    margin-left: 15px; 
-    padding-right: 20px; 
-    
-}
-
-.nav-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    text-align: left;
-    justify-content: center;
-    flex: 1;
-}
-
-.navbar svg{
-    width: 25px;   
-    margin-right: 20px;
-    fill: white;
-}
-
 .container {
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: grid;
     grid-template-columns: 1fr 1fr; /* Deux colonnes pour le texte et l'image */
-    width: 80%;
-    max-width: 1200px; /* Taille maximale adaptée aux grands écrans */
-    height: 800px; /* Hauteur ajustée */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
+    width: 50%;
+    /* max-width: 50%; Taille maximale adaptée aux grands écrans */
+    height: 100%; /* Hauteur ajustée */
+    box-shadow: 0 0 15px rgba(202, 16, 16, 0.2);
+    background-color: white  ;
     border-radius: 10px; /* Coins arrondis */
     overflow: hidden; /* Empêche tout débordement */
-    margin-left: 20%;
+    margin-left: 25%;
 }
 .form-container {
+    height: 100%;
     padding: 60px;
     display: flex;
     flex-direction: column;
