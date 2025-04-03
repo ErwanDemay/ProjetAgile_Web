@@ -1,0 +1,78 @@
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    margin-top: 20vh;
+}
+
+.table-container {
+    width: 60vw;
+    background-color: #ddd;
+    padding: 2vh;
+    border-radius: 1vh;
+    box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+th, td {
+    padding: 1.5vh;
+    text-align: left;
+    border-bottom: 0.2vh solid #ccc;
+}
+
+th {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    background-color: white;
+    border-radius: 1vh;
+    text-align: center;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
+
+h1 {
+    margin-bottom: 2vh;
+    font-size: 24px;
+}
+
+.button-add {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    padding: 0.75vw; /* Réduit de 2vw à 1.5vw */
+    width: 20%; /* Gardé à 50% */
+    border-radius: 0.8vw; /* Réduit de 1vw à 0.8vw */
+    cursor: pointer;
+    font-size: 1vw; /* Réduit de 1.6vw à 1.4vw */
+    margin-bottom: 0.5vh;
+    margin-left: 1vw;
+    top: 0; /* Aligne le bouton en haut du conteneur */
+    right: 0; /* Aligne le bouton à droite */
+}
+
+.button-add:hover{
+    background-color: #0055cc;
+}
+
+.button-container{
+    width: 60vw;
+    display: flex;
+    justify-content: end;
+}
