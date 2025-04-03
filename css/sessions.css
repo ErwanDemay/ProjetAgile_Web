@@ -65,6 +65,7 @@ h1 {
     margin-left: 1vw;
     top: 0; /* Aligne le bouton en haut du conteneur */
     right: 0; /* Aligne le bouton à droite */
+    transition: background-color 0.3s ease;
 }
 
 .button-add:hover{
