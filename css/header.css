@@ -3,7 +3,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: black;
+  background-color: var(--nav-background);
   display: flex;
   align-items: center;
   z-index: 1000;

@@ -21,8 +21,8 @@
   border-radius: 2rem;
   border: none;
   font-size: 1rem;
-  background-color: black;
-  color: white;
+  background-color: var(--nav-background);
+  color: var(--text-light);
 }
 
 .search-bar::placeholder {
@@ -34,7 +34,7 @@
   right: 1rem;
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: var(--text-light);
   cursor: pointer;
 }
 
@@ -48,13 +48,13 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: black;
-  color: white;
+  background-color: var(--nav-background);
+  color: var(--text-light);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .menu-button:hover {
-  background-color: red;
-  color: black;
+  background-color: var(--button-hover);
+  color: var(--text-light);
 }
