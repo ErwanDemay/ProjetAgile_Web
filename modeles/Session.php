@@ -1,3 +1,3 @@
 <?php
-echo "class Session";
+//echo "class Session";
 ?>
