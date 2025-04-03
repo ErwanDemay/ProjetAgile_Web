@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>Prochaines sessions</h1>
+<div class="button-container">
+<button class="button-add">Ajouter une session</button>
+</div>
 <div class="table-container">
     <table>
         <thead>
