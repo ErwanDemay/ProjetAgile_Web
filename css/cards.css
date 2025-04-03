@@ -7,17 +7,19 @@
 
 .card {
   width: 30vw; /* Réduit de 25vw à 20vw */
-  background-color: #e0e0e0;
+  background-color: var(--card-background);
   border-radius: 1vw; /* Pas de changement */
-  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.1); /* Réduit les valeurs de 0.5vw 1vw à 0.4vw 0.8vw */
+  box-shadow: 0 0.4vw 0.8vw var(--card-shadow); /* Réduit les valeurs de 0.5vw 1vw à 0.4vw 0.8vw */
   overflow: hidden;
   text-align: left;
+  border: 1px solid var(--card-border);
 }
 
 .card-header {
   height: 4vh; /* Réduit de 5vh à 4vh */
   margin-top: 2vh;
   text-align: center;
+  color: var(--text-primary);
 }
 
 .card-body {
@@ -25,8 +27,8 @@
 }
 
 .card-button {
-  background-color: #0066ff;
-  color: white;
+  background-color: var(--button-primary);
+  color: var(--text-light);
   border: none;
   padding: 0.75vw; /* Réduit de 2vw à 1.5vw */
   width: 30%; /* Gardé à 50% */
@@ -36,6 +38,7 @@
   margin-bottom: 0.5vh;
   margin-top: 2vh;
   margin-left: 1vw;
+  transition: background-color 0.3s ease;
 }
 
 .card-image {
@@ -45,5 +48,5 @@
 }
 
 .card-button:hover {
-  background-color: #0055cc;
+  background-color: var(--button-hover);
 }

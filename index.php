@@ -21,6 +21,7 @@ session_start();
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/filters.css">
   <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/globals.css">
   <script src="js/navbar.js" defer></script>
 
 </head>

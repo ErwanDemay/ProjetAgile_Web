@@ -11,7 +11,7 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  /* background-color: purple; */
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,7 +29,6 @@ header {
 /* Contenu principal */
 main {
   flex: 1 0 auto;
-  /* background-color: purple; */
   width: 100%;
   position: relative;
   z-index: 1;
@@ -43,7 +42,8 @@ footer {
   width: 100%;
   text-align: center;
   padding: 20px;
-  background-color: black;
+  background-color: var(--nav-background);
+  color: var(--text-light);
   position: relative;
   z-index: 1;
   margin-top: auto;
@@ -51,6 +51,16 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+footer a {
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--nav-hover);
+  text-decoration: underline;
 }
 
 /* DEBUT DU CSS POUR LA BARRE DE RECHERCHE */

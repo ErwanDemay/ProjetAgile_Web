@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background-color: black;
+  background-color: var(--nav-background);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
 }
 
 .nav-title {
-  color: white;
+  color: var(--text-light);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
@@ -22,7 +22,7 @@
 }
 
 .nav-links a {
-  color: white;
+  color: var(--text-light);
   text-decoration: none;
   font-size: 1rem;
   position: relative;
@@ -31,32 +31,32 @@
 }
 
 .nav-links a:hover {
-  color: #ccc;
+  color: var(--nav-hover);
 }
 
 .nav-links svg {
   width: 24px;
   height: 24px;
-  fill: white;
+  fill: var(--text-light);
   cursor: pointer;
 }
 
 .nav-links svg:hover {
-  fill: #ccc;
+  fill: var(--nav-hover);
 }
 
 .nav-indicator {
   position: absolute;
   bottom: -5px;
   height: 2px;
-  background-color: #ffffff;
+  background-color: var(--nav-active);
   transition: all 0.3s ease-in-out, opacity 0.3s ease-in-out;
   pointer-events: none;
   opacity: 0;
 }
 
 .nav-links a.active {
-  color: #ffffff;
+  color: var(--nav-active);
 }
 
 .nav-image {
@@ -67,5 +67,5 @@
 .navbar svg {
   width: 25px;
   margin-right: 20px;
-  fill: white;
+  fill: var(--text-light);
 }

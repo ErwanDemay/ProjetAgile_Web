@@ -1,75 +1,82 @@
 .container {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Deux colonnes pour le texte et l'image */
-    width: 50%;
-    /* max-width: 50%; Taille maximale adaptée aux grands écrans */
-    height: 100%; /* Hauteur ajustée */
-    box-shadow: 0 0 15px rgba(202, 16, 16, 0.2);
-    background-color: white  ;
-    border-radius: 10px; /* Coins arrondis */
-    overflow: hidden; /* Empêche tout débordement */
-    margin-left: 25%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* La partie gauche est maintenant 1.5 fois plus large */
+  width: 60%; /* Augmentation de la largeur totale du conteneur */
+  height: 100%; /* Hauteur ajustée */
+  box-shadow: 0 0 15px var(--card-shadow);
+  background-color: var(--card-background);
+  border-radius: 10px; /* Coins arrondis */
+  overflow: hidden; /* Empêche tout débordement */
+  margin-left: 20%; /* Ajusté pour centrer le conteneur plus large */
 }
 .form-container {
-    height: 100%;
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  height: 100%;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .form-container h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #333;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: var(--text-primary);
 }
 .form-container label {
-    font-size: 18px;
-    margin-bottom: 10px;
-    display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--text-primary);
 }
 .form-container input[type="email"],
 .form-container input[type="password"] {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 30px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 18px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 30px;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  font-size: 18px;
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 .form-container button {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: var(--button-primary);
+  color: var(--text-light);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .form-container button:hover {
-    background-color: #0056b3;
+  background-color: var(--button-hover);
 }
 .form-container a {
-    display: block;
-    margin-top: 15px;
-    text-align: center;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 16px;
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: var(--button-primary);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 .form-container a:hover {
-    text-decoration: underline;
+  color: var(--button-hover);
+  text-decoration: underline;
 }
 .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e0e0e0; /* Couleur par défaut */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(
+    --card-background
+  ); /* Utilisation de la couleur de fond des cartes */
 }
 .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Assure que l'image remplit la colonne sans débordement */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Assure que l'image remplit la colonne sans débordement */
 }

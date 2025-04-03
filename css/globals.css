@@ -1,0 +1,27 @@
+:root {
+  /* Couleurs principales */
+  --primary-color: #000000; /* Noir */
+  --secondary-color: #333333; /* Gris foncé */
+  --background-color: #ffffff; /* Blanc */
+  --dark-accent: #000000; /* Noir */
+
+  /* Textes */
+  --text-primary: #000000; /* Texte principal en noir */
+  --text-secondary: #666666; /* Texte secondaire en gris */
+  --text-light: #ffffff; /* Texte clair en blanc */
+
+  /* États des boutons */
+  --button-primary: #000000; /* Bouton noir */
+  --button-hover: #333333; /* Bouton gris foncé au survol */
+  --button-active: #000000; /* Bouton noir actif */
+
+  /* Éléments de navigation */
+  --nav-background: #000000; /* Navbar noire */
+  --nav-active: #ffffff; /* Indicateur actif en blanc */
+  --nav-hover: #cccccc; /* Effet de survol en gris clair */
+
+  /* Cards et conteneurs */
+  --card-background: #ffffff; /* Fond des cartes en blanc */
+  --card-shadow: rgba(0, 0, 0, 0.1); /* Ombre noire légère */
+  --card-border: #dddddd; /* Bordure grise claire */
+}
