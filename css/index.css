@@ -26,6 +26,12 @@ header {
   z-index: 1000;
 }
 
+.page_title h2 {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 /* Contenu principal */
 main {
   flex: 1 0 auto;
