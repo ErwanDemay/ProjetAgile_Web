@@ -28,7 +28,7 @@
                 <div class="card-body">
                 <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
                 </div>
-                <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Voir plus</button>
+                <button class="card-button">Voir plus</button>
             </div>
             <div class="card">
                 <div class="card-header">Image 2</div>

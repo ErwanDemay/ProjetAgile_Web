@@ -20,5 +20,9 @@ switch ($action){
                             require_once("./vues/v_recettes.php");
                         }
                         break;
+
+    case 'consultationDetailsRecettes'    :
+      echo "consult detail OK";
+      break;
 }
 ?>
