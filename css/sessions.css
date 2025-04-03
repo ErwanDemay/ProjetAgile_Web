@@ -53,7 +53,7 @@ h1 {
 }
 
 .button-add {
-    background-color: #0066ff;
+    background-color: var(--button-primary);
     color: white;
     border: none;
     padding: 0.75vw; /* Réduit de 2vw à 1.5vw */
@@ -68,7 +68,7 @@ h1 {
 }
 
 .button-add:hover{
-    background-color: #0055cc;
+    background-color: var(--button-hover);
 }
 
 .button-container{
