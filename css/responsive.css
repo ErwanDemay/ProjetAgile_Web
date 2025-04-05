@@ -1,27 +1,10 @@
-/* Media Queries pour rendre le site responsive */
+/* Media Queries globales */
 
 /* Tablettes (768px et moins) */
 @media screen and (max-width: 768px) {
   /* Ajustements généraux */
   body {
-    font-size: 14px;
-  }
-
-  /* Navbar */
-  .navbar {
-    padding: 0.5rem;
-  }
-
-  .nav-title {
-    font-size: 1.2rem;
-  }
-
-  .nav-links {
-    gap: 1rem;
-  }
-
-  .nav-links a {
-    font-size: 0.9rem;
+    font-size: 15px;
   }
 
   /* Contenu principal */
@@ -30,81 +13,15 @@
     min-height: calc(100vh - 60px - 50px);
   }
 
-  /* Cards */
-  .card-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    margin: 5vh 2rem;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .card-button {
-    padding: 0.5rem;
-    width: 40%;
-    font-size: 0.9rem;
-  }
-
-  /* Barre de recherche */
-  .search-container {
-    margin-top: 5rem;
-    padding: 1rem 0;
-  }
-
-  .search {
-    width: 90%;
-  }
-
-  .menu {
-    width: 90%;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .menu-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    margin: 0.25rem;
-  }
-
-  /* Formulaire de connexion */
+  /* Ajustements des marges et paddings globaux */
   .container {
-    width: 90%;
-    margin-left: 5%;
-    grid-template-columns: 1fr;
+    padding: 0 15px;
   }
 
-  .form-container {
-    padding: 30px;
-  }
-
-  .form-container h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-
-  .form-container label {
-    font-size: 16px;
-  }
-
-  .form-container input[type="email"],
-  .form-container input[type="password"] {
-    padding: 12px;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-
-  .form-container button {
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  .image-container {
-    display: none; /* Cacher l'image sur mobile */
+  /* Ajustements des grilles */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 }
 
@@ -112,24 +29,7 @@
 @media screen and (max-width: 480px) {
   /* Ajustements généraux */
   body {
-    font-size: 12px;
-  }
-
-  /* Navbar */
-  .navbar {
-    padding: 0.5rem;
-  }
-
-  .nav-title {
-    font-size: 1rem;
-  }
-
-  .nav-links {
-    gap: 0.5rem;
-  }
-
-  .nav-links a {
-    font-size: 0.8rem;
+    font-size: 14px;
   }
 
   /* Contenu principal */
@@ -137,74 +37,27 @@
     margin-top: 50px;
   }
 
-  /* Cards */
-  .card-container {
-    margin: 3vh 1rem;
-  }
-
-  .card-button {
-    width: 50%;
-    font-size: 0.8rem;
-  }
-
-  /* Barre de recherche */
-  .search-container {
-    margin-top: 4rem;
-  }
-
-  .search-bar {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  .menu-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  /* Formulaire de connexion */
+  /* Ajustements des marges et paddings globaux */
   .container {
-    width: 95%;
-    margin-left: 2.5%;
+    padding: 0 10px;
   }
 
-  .form-container {
-    padding: 20px;
-  }
-
-  .form-container h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-
-  .form-container label {
-    font-size: 14px;
-  }
-
-  .form-container input[type="email"],
-  .form-container input[type="password"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 14px;
-  }
-
-  .form-container button {
-    padding: 10px;
-    font-size: 14px;
+  /* Ajustements des grilles */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
 
 /* Très petits écrans (320px et moins) */
 @media screen and (max-width: 320px) {
-  .nav-links a {
-    font-size: 0.7rem;
+  /* Ajustements généraux */
+  body {
+    font-size: 13px;
   }
 
-  .card-button {
-    width: 60%;
-  }
-
-  .form-container h2 {
-    font-size: 20px;
+  /* Ajustements des marges et paddings globaux */
+  .container {
+    padding: 0 5px;
   }
 }

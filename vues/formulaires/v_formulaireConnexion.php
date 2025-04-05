@@ -11,12 +11,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CookFusions Lab</title>
   <link rel="stylesheet" href="../../css/globals.css">
+  <link rel="stylesheet" href="../../css/navbar.css">
   <link rel="stylesheet" href="../../css/formulaireConnexion.css">
 
 </head>
 
-<body>
-<div class="container">
+<body>    
+    <div class="container">
         <div class="form-container">
             <h2>Connexion</h2>
             <form>
@@ -34,3 +35,4 @@
     </div>
 
 </body>
+</html>

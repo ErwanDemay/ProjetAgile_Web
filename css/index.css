@@ -7,7 +7,7 @@
 /* Général */
 body {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden; /* Empêche le défilement */
 }
 
 /* Header */
@@ -30,6 +31,7 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-weight: 700;
 }
 
 /* Contenu principal */
@@ -38,8 +40,9 @@ main {
   width: 100%;
   position: relative;
   z-index: 1;
-  margin-top: 80px; /* Ajout d'une marge pour compenser le header fixe */
-  min-height: calc(100vh - 80px - 60px); /* 100vh - header - footer */
+  margin-top: 10vh; /* Utilisation de vh au lieu de px */
+  height: 80vh; /* Hauteur fixe pour éviter le défilement */
+  overflow-y: auto; /* Permet le défilement uniquement dans le contenu principal si nécessaire */
 }
 
 /* Footer */
@@ -47,13 +50,13 @@ footer {
   flex-shrink: 0;
   width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 2vh;
   background-color: var(--nav-background);
   color: var(--text-light);
   position: relative;
   z-index: 1;
   margin-top: auto;
-  height: 60px;
+  height: 10vh; /* Utilisation de vh au lieu de px */
   display: flex;
   align-items: center;
   justify-content: center;

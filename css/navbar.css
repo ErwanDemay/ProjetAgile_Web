@@ -1,22 +1,26 @@
 .navbar {
   width: 100%;
   background-color: var(--nav-background);
-  padding: 1rem;
+  padding: 2vh 2vw;
+  padding-bottom: 3vh; /* Ajout d'un padding-bottom pour éviter que le contenu ne soit caché */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 10vh; /* Hauteur fixe en vh */
+  position: relative;
+  z-index: 1000;
 }
 
 .nav-title {
   color: var(--text-light);
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 2vw; /* Taille de police responsive */
   font-weight: bold;
 }
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 2vw; /* Espacement responsive */
   align-items: center;
   position: relative;
 }
@@ -24,10 +28,12 @@
 .nav-links a {
   color: var(--text-light);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1vw; /* Taille de police responsive */
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.5vh 0;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center; /* Centre verticalement le contenu */
 }
 
 .nav-links a:hover {
@@ -35,10 +41,13 @@
 }
 
 .nav-links svg {
-  width: 24px;
-  height: 24px;
+  width: 2vw; /* Taille responsive */
+  height: 2vw; /* Taille responsive */
   fill: var(--text-light);
   cursor: pointer;
+  display: block; /* Assure que l'icône est affichée comme un bloc */
+  margin: 0; /* Supprime les marges par défaut */
+  vertical-align: middle; /* Aligne verticalement l'icône */
 }
 
 .nav-links svg:hover {
@@ -47,8 +56,8 @@
 
 .nav-indicator {
   position: absolute;
-  bottom: -5px;
-  height: 2px;
+  bottom: -0.5vh;
+  height: 0.2vh;
   background-color: var(--nav-active);
   transition: all 0.3s ease-in-out, opacity 0.3s ease-in-out;
   pointer-events: none;
@@ -65,7 +74,151 @@
 }
 
 .navbar svg {
-  width: 25px;
-  margin-right: 20px;
+  width: 2vw; /* Taille responsive */
+  margin-right: 2vw; /* Marge responsive */
   fill: var(--text-light);
+}
+
+/* Menu hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-light);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Media queries pour la barre de navigation */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1.5vh 1.5vw;
+    height: 8vh;
+  }
+
+  .nav-title {
+    font-size: 1.6vw;
+  }
+
+  .nav-links {
+    gap: 1.5vw;
+  }
+
+  .nav-links a {
+    font-size: 0.9vw;
+  }
+
+  .nav-links svg {
+    width: 1.6vw;
+    height: 1.6vw;
+  }
+
+  .navbar svg {
+    width: 1.6vw;
+    margin-right: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 1vh 1vw;
+    height: 6vh;
+  }
+
+  .nav-title {
+    font-size: 1.4vw;
+  }
+
+  /* Afficher le menu hamburger */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Cacher les liens de navigation normaux */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--nav-background);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding: 2vh;
+  }
+
+  /* Classe pour ouvrir le menu */
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 24px; /* Augmentation de la taille de police pour les liens */
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0;
+  }
+
+  .nav-links svg {
+    width: 32px; /* Augmentation de la taille des icônes */
+    height: 32px; /* Augmentation de la taille des icônes */
+  }
+
+  /* Animation du hamburger */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Overlay pour le menu */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .menu-overlay.active {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navbar {
+    padding: 0.8vh 0.8vw;
+    height: 5vh;
+  }
+
+  .nav-title {
+    font-size: 1.2vw;
+  }
+
+  .nav-links a {
+    font-size: 20px; /* Augmentation de la taille de police pour les très petits écrans */
+  }
 }

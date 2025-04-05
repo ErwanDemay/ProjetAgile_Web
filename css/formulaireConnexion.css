@@ -1,34 +1,38 @@
 .container {
-  margin-top: 5%;
+  margin-top: 15vh; /* Augmenté pour éviter d'être caché par la navbar */
   margin-bottom: 5%;
   display: grid;
   grid-template-columns: 1.5fr 1fr; /* La partie gauche est maintenant 1.5 fois plus large */
   width: 60%; /* Augmentation de la largeur totale du conteneur */
-  height: 100%; /* Hauteur ajustée */
+  height: auto; /* Hauteur automatique pour s'adapter au contenu */
   box-shadow: 0 0 15px var(--card-shadow);
   background-color: var(--card-background);
   border-radius: 10px; /* Coins arrondis */
-  overflow: hidden; /* Empêche tout débordement */
+  overflow: visible; /* Permet le débordement pour voir le lien */
   margin-left: 20%; /* Ajusté pour centrer le conteneur plus large */
 }
+
 .form-container {
-  height: 100%;
+  height: auto; /* Hauteur automatique pour s'adapter au contenu */
   padding: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Aligner au début plutôt qu'au centre */
 }
+
 .form-container h2 {
   font-size: 36px;
   margin-bottom: 30px;
   color: var(--text-primary);
 }
+
 .form-container label {
   font-size: 18px;
   margin-bottom: 10px;
   display: block;
   color: var(--text-primary);
 }
+
 .form-container input[type="email"],
 .form-container input[type="password"] {
   width: 100%;
@@ -40,6 +44,7 @@
   background-color: var(--background-color);
   color: var(--text-primary);
 }
+
 .form-container button {
   width: 100%;
   padding: 15px;
@@ -50,23 +55,30 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Ajout d'une marge en bas du bouton */
 }
+
 .form-container button:hover {
   background-color: var(--button-hover);
 }
+
 .form-container a {
   display: block;
   margin-top: 15px;
+  margin-bottom: 15px; /* Ajout d'une marge en bas du lien */
   text-align: center;
   color: var(--button-primary);
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;
+  padding: 10px 0; /* Ajout de padding pour augmenter la zone cliquable */
 }
+
 .form-container a:hover {
   color: var(--button-hover);
   text-decoration: underline;
 }
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -75,8 +87,89 @@
     --card-background
   ); /* Utilisation de la couleur de fond des cartes */
 }
+
 .image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Assure que l'image remplit la colonne sans débordement */
+}
+
+/* Media queries pour le formulaire de connexion */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+    margin-left: 5%;
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .form-container {
+    padding: 30px;
+  }
+
+  .form-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .form-container label {
+    font-size: 16px;
+  }
+
+  .form-container input[type="email"],
+  .form-container input[type="password"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .form-container button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .image-container {
+    display: none; /* Cacher l'image sur mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+    margin-left: 2.5%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .form-container label {
+    font-size: 14px;
+  }
+
+  .form-container input[type="email"],
+  .form-container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .form-container button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .form-container h2 {
+    font-size: 20px;
+  }
 }

@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
-  margin-top: 7rem;
+  padding: 2vh 0;
+  margin-top: 12vh; /* Augmenté davantage pour créer un plus grand écart avec la navbar */
   /* background-color: purple; */
 }
 
@@ -17,10 +17,10 @@
 
 .search-bar {
   width: 100%;
-  padding: 1rem;
-  border-radius: 2rem;
+  padding: 1.5vh;
+  border-radius: 2vw;
   border: none;
-  font-size: 1rem;
+  font-size: 1vw; /* Taille de police responsive */
   background-color: var(--nav-background);
   color: var(--text-light);
 }
@@ -31,30 +31,153 @@
 
 .search svg {
   position: absolute;
-  right: 1rem;
-  width: 20px;
-  height: 20px;
+  right: 1vw;
+  width: 1.5vw; /* Taille responsive */
+  height: 1.5vw; /* Taille responsive */
   fill: var(--text-light);
   cursor: pointer;
 }
 
 .menu {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  justify-content: left;
+  gap: 1vw;
+  margin-top: 1vh;
 }
 
 .menu-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5vh 1vw;
   border: none;
-  border-radius: 1rem;
+  border-radius: 1vw;
   background-color: var(--nav-background);
   color: var(--text-light);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 0.9vw; /* Taille de police responsive */
 }
 
 .menu-button:hover {
   background-color: var(--button-hover);
   color: var(--text-light);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--nav-background);
+  min-width: 160px;
+  border-radius: 1vw;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: 0;
+  top: 100%;
+}
+
+.dropdown-content button {
+  width: 100%;
+  text-align: left;
+  padding: 0.8vh 1vw;
+  border: none;
+  background-color: transparent;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 0.9vw;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content button:hover {
+  background-color: var(--button-hover);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Media queries pour la barre de recherche */
+@media screen and (max-width: 768px) {
+  .search {
+    width: 90%;
+  }
+
+  .search-bar {
+    font-size: 16px;
+    padding: 1.2vh;
+  }
+
+  .search svg {
+    width: 20px;
+    height: 20px;
+    right: 10px;
+  }
+
+  .menu {
+    width: 90%;
+    gap: 0.5vw;
+  }
+
+  .menu-button {
+    font-size: 14px;
+    padding: 0.4vh 0.8vw;
+  }
+
+  .dropdown-content button {
+    font-size: 14px;
+    padding: 0.6vh 0.8vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    width: 95%;
+  }
+
+  .search-bar {
+    font-size: 14px;
+    padding: 1vh;
+  }
+
+  .search svg {
+    width: 16px;
+    height: 16px;
+    right: 8px;
+  }
+
+  .menu {
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .menu-button {
+    font-size: 12px;
+    padding: 0.3vh 0.6vw;
+  }
+
+  .dropdown-content {
+    min-width: 140px;
+  }
+
+  .dropdown-content button {
+    font-size: 12px;
+    padding: 0.5vh 0.6vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-bar {
+    font-size: 12px;
+  }
+
+  .menu-button {
+    font-size: 11px;
+  }
+
+  .dropdown-content button {
+    font-size: 11px;
+  }
 }

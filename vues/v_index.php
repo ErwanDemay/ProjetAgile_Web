@@ -14,34 +14,34 @@
 </head>
 
 <body>
-
   
 <main>
   <div class="page_title">
-  <H2>Nos 3 dernières recettes</H2>
-</div> 
-        <section class="card-container">
-            <div class="card">
-                <div class="card-header">Image 1</div>
-                <div class="card-body">
-                <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
-                </div>
-                <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Voir plus</button>
-            </div>
-            <div class="card">
-                <div class="card-header">Image 2</div>
-                <div class="card-body">
-                <img src="../images/logoCookFusion.png" alt="Image 2" class="card-image">
-                </div>
-                <button class="card-button">Voir plus</button>
-            </div>
-            <div class="card">
-                <div class="card-header">Image 3</div>
-                <div class="card-body">
-                <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
-                </div>
-                <button class="card-button">Voir plus</button>
-            </div>
-        </section>
-    </main>
+    <h2>Nos 3 dernières recettes</h2>
+  </div> 
+  <section class="card-container">
+    <div class="card">
+      <div class="card-header">Image 1</div>
+      <div class="card-body">
+        <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
+      </div>
+      <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Voir plus</button>
+    </div>
+    <div class="card">
+      <div class="card-header">Image 2</div>
+      <div class="card-body">
+        <img src="../images/logoCookFusion.png" alt="Image 2" class="card-image">
+      </div>
+      <button class="card-button">Voir plus</button>
+    </div>
+    <div class="card">
+      <div class="card-header">Image 3</div>
+      <div class="card-body">
+        <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
+      </div>
+      <button class="card-button">Voir plus</button>
+    </div>
+  </section>
+</main>
+</body>
 </html>
