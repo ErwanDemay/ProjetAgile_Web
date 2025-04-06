@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Sélectionner tous les liens de navigation (sauf l'icône de profil)
   const navLinks = document.querySelectorAll(".nav-links a:not(:last-child)");
   const navLinksContainer = document.querySelector(".nav-links");
+  const profileIcon = document.querySelector(".nav-links a:last-child");
 
   // Créer l'élément indicateur
   const indicator = document.createElement("div");
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fonction pour définir le lien actif basé sur l'URL actuelle
   function setActiveLink() {
-    const currentPath = window.location.search;
+    const currentPath = window.location.pathname;
     let isMainPage = false;
 
     // Vérifier si nous sommes sur une des pages principales (recettes ou sessions)
@@ -68,8 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
         e.currentTarget.href.includes("sessions")
       ) {
         e.currentTarget.classList.add("active");
+        updateIndicator(e.currentTarget);
       }
     });
+  });
+
+  // Ajouter un écouteur d'événements pour l'icône de profil
+  profileIcon.addEventListener("mouseenter", () => {
+    hideIndicator();
   });
 
   // Remettre l'indicateur sur le lien actif quand la souris quitte la navigation

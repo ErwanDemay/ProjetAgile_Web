@@ -7,7 +7,7 @@
 /* Général */
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
@@ -15,7 +15,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden; /* Empêche le défilement */
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+  overflow-y: auto; /* Permet le défilement vertical */
 }
 
 /* Header */
@@ -41,8 +42,8 @@ main {
   position: relative;
   z-index: 1;
   margin-top: 10vh; /* Utilisation de vh au lieu de px */
-  height: 80vh; /* Hauteur fixe pour éviter le défilement */
-  overflow-y: auto; /* Permet le défilement uniquement dans le contenu principal si nécessaire */
+  min-height: 80vh; /* Hauteur minimale au lieu de hauteur fixe */
+  padding-bottom: 10vh; /* Espace pour le footer */
 }
 
 /* Footer */
