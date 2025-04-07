@@ -127,3 +127,27 @@
     height: 15vh;
   }
 }
+
+.header-btn-container {
+  display: flex;
+  justify-content: flex-end; /* Aligner le bouton à droite */
+  flex-grow: 1; /* Prendre tout l'espace disponible */
+}
+
+.add-recipe-btn {
+  padding: 8px 16px;
+  background-color: var(--button-primary);
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-recipe-btn:hover {
+  opacity: 0.8;
+  background-color: var(--button-hover);
+  transition: background-color 0.3s ease;
+}

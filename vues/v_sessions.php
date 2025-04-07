@@ -9,7 +9,7 @@
 <body>
 <h1>Prochaines sessions</h1>
 <div class="button-container">
-<button class="button-add">Ajouter une session</button>
+<a href="../index.php?controleur=sessions&action=ajoutSession" class="button-add">Ajouter une session</a>
 </div>
 <div class="table-container">
     <table>

@@ -20,5 +20,9 @@ switch ($action){
                             require_once("./vues/v_sessions.php");
                         }
                         break;
+
+    case 'ajoutSession'    :
+      require_once("./vues/formulaires/v_formulaireAjoutSession.php");
+      break;
 }
 ?>

@@ -1,5 +1,7 @@
+<head>
+<link rel="stylesheet" href="../../css/formulaireAjout.css">
+</head>
 <body>
-    
     <div class="form-container">
         <h2>Ajouter une recette</h2>
         <form action="#" method="post" enctype="multipart/form-data">
@@ -21,8 +23,8 @@
                 <input type="file" id="image" name="image" accept="image/*" required>
             </div>
             <div class="buttons">
-                <button type="button" class="cancel-btn">Annuler</button>
-                <button type="submit" class="create-btn">Créer</button>
+            <a href="../../index.php?controleur=recettes&action=consultationRecettes" class="cancel-btn">Annuler</a>
+            <a href="../../index.php?controleur=recettes&action=recetteAjoutee" class="create-btn">Créer</a>
             </div>
         </form>
     </div>
