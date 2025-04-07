@@ -24,5 +24,8 @@ switch ($action){
     case 'consultationDetailsRecettes'    :
       require_once("./vues/v_recettesDetail.php");
       break;
+    case 'consultationSessionAssociee':
+      require_once('./vues/v_sessions.php');
+      break;
 }
 ?>

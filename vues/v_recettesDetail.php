@@ -14,7 +14,7 @@
                 <div class="card-image">
                 <img src="../images/BoeufBourgignon.jpg" alt="Image 1" class="card-image">
                 </div>
-                <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Nos sessions</button>
+                <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationSessionAssociee'">Nos sessions</button>
             </div>
             <div class="card-texte">
                 <div class="card-texte-body">
