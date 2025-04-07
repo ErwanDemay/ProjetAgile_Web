@@ -26,7 +26,7 @@
         </div>
     </section>
     <div class="header-btn-container">
-        <a href="../index.php?controleur=recettes&action=ajoutRecette" class="add-recipe-btn">Ajouter une recette</a>
+        <a href="../index.php?controleur=recettes&action=addRecette" class="add-recipe-btn">Ajouter une recette</a>
     </div>
     <main>
         <section class="card-container">
@@ -35,21 +35,33 @@
                 <div class="card-body">
                 <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
                 </div>
-                <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Voir plus</button>
+                <div class="button-container">
+                <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes" class="card-button">Voir plus</a>
+                <a href="./index.php?controleur=recettes&action=updateRecette&id=" class="card-button">Modifier</a>
+                <a href="./index.php?controleur=recettes&action=deleteRecette&id=" class="card-button">Supprimer</a>
+            </div>
             </div>
             <div class="card">
                 <div class="card-header">Image 2</div>
                 <div class="card-body">
                 <img src="../images/logoCookFusion.png" alt="Image 2" class="card-image">
                 </div>
-                <button class="card-button">Voir plus</button>
+                <div class="button-container">
+                <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes" class="card-button">Voir plus</a>
+                <a href="./index.php?controleur=recettes&action=updateRecette&id=" class="card-button">Modifier</a>
+                <a href="./index.php?controleur=recettes&action=deleteRecette&id=" class="card-button">Supprimer</a> 
+            </div>
             </div>
             <div class="card">
                 <div class="card-header">Image 3</div>
                 <div class="card-body">
                 <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
                 </div>
-                <button class="card-button">Voir plus</button>
+            <div class="button-container">
+                <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes" class="card-button">Voir plus</a>
+                <a href="./index.php?controleur=recettes&action=updateRecette&id=" class="card-button">Modifier</a>
+                <a href="./index.php?controleur=recettes&action=deleteRecette&id=" class="card-button">Supprimer</a>
+            </div>
             </div>
             <div class="card">
                 <div class="card-header">Image 1</div>

@@ -6,13 +6,13 @@
         <h2>Ajouter une recette</h2>
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="input-field">
-                <input type="text" id="libelleRecette" name="libelleRecette" placeholder="Nom de la recette" required>
+                <input type="text" id="libelleRecette" name="libelleRecette" placeholder="Nom de la recette" value="recette->getLibelle()" required>
             </div>
             <div class="input-field">
-                <input type="text" id="descriptionRecette" name="descriptionRecette" placeholder="Description de la recette" required>
+                <input type="text" id="descriptionRecette" name="descriptionRecette" placeholder="Description de la recette" value="recette->getDescription()" required>
             </div>
             <div class="input-field">
-                <select id="typeRecette" name="typeRecette" required>
+                <select id="typeRecette" name="typeRecette" value="recette->getId_Type()" required>
                     <option value="" disabled selected>Type de recette</option>
                     <option value="entrée">Entrée</option>
                     <option value="plat">Plat</option>
@@ -20,7 +20,7 @@
                 </select>
             </div>
             <div class="input-field">
-                <input type="file" id="imageRecette" name="imageRecette" accept="image/*" required>
+                <input type="file" id="imageRecette" name="imageRecette" accept="image/*" value="recette->getUneImage()" required>
             </div>
             <div class="buttons">
             <a href="../../index.php?controleur=recettes&action=consultationRecettes" class="cancel-btn">Annuler</a>
