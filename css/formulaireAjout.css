@@ -76,7 +76,7 @@ body {
 
 .buttons {
   display: flex;
-  justify-content: end;
+  justify-content: space-evenly;
   gap: 0.375vw; /* Était 0.25vw */
   margin-top: 1.5vh; /* Était 1vh */
 }
