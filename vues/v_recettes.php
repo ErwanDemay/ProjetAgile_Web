@@ -25,7 +25,9 @@
             </div>
         </div>
     </section>
-    
+    <div class="header-btn-container">
+        <a href="../index.php?controleur=recettes&action=ajoutRecette" class="add-recipe-btn">Ajouter une recette</a>
+    </div>
     <main>
         <section class="card-container">
             <div class="card">

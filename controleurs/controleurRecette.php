@@ -24,5 +24,9 @@ switch ($action){
     case 'consultationDetailsRecettes'    :
       require_once("./vues/v_recettesDetail.php");
       break;
+
+    case 'ajoutRecette'    :
+      require_once("./vues/formulaires/v_formulaireAjoutRecette.php");
+      break;
 }
 ?>
