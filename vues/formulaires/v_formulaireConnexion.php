@@ -20,7 +20,7 @@
     <div class="container">
         <div class="form-container">
             <h2>Connexion</h2>
-            <form>
+            <form action ='index.php?controleur=utilisateurs&action=loginEnCours' method="POST">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Entrez votre mail">
                 <label for="password">Mot de passe</label>
