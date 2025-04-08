@@ -60,7 +60,7 @@ session_start();
                     case 'sessions' : 
                         require_once("./controleurs/controleurSession.php"); 
                         break;
-                    case 'utilisateurs' : 
+                  case 'utilisateurs' : 
                         require_once("./controleurs/controleurUtilisateur.php"); 
                         break;
                     case 'recettes' : 

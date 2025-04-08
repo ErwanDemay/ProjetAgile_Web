@@ -8,7 +8,29 @@
 </head>
 <body>
 
-    
+<?php
+// Affichage des messages
+if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-<?php echo $_SESSION['messageType'] == 'success' ? 'success' : 'danger'; ?>">
+        <?php 
+        echo $_SESSION['message'];
+        if (isset($_SESSION['erreurs'])) {
+            echo '<ul>';
+            foreach ($_SESSION['erreurs'] as $erreur) {
+                echo "<li>$erreur</li>";
+            }
+            echo '</ul>';
+        }
+        ?>
+    </div>
+    <?php 
+    // Nettoyage des messages après affichage
+    unset($_SESSION['message']);
+    unset($_SESSION['messageType']);
+    unset($_SESSION['erreurs']);
+    ?>
+<?php endif; ?>
+
     <section class="search-container">
         <div class="search">
             <input type="text" placeholder="Recherchez une recette" class="search-bar">
@@ -26,7 +48,7 @@
         </div>
     </section>
     <div class="header-btn-container">
-        <a href="../index.php?controleur=recettes&action=addRecette" class="add-recipe-btn">Ajouter une recette</a>
+        <a href="index.php?controleur=recettes&action=addRecette" class="add-recipe-btn">Ajouter une recette</a>
     </div>
     <main>
         <section class="card-container">

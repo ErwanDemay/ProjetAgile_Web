@@ -4,29 +4,29 @@
 <body>
     <div class="form-container">
         <h2>Ajouter une recette</h2>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="index.php?controleur=recettes&action=recetteAdded" method="post" enctype="multipart/form-data">
             <div class="input-field">
-                <input type="text" id="libelleRecette" name="libelleRecette" placeholder="Nom de la recette" required>
+                <input type="text" id="libelle" name="libelle" placeholder="Nom de la recette" required>
             </div>
             <div class="input-field">
-                <input type="text" id="descriptionRecette" name="descriptionRecette" placeholder="Description de la recette" required>
+                <textarea id="description" name="description" placeholder="Description de la recette" required></textarea>
             </div>
             <div class="input-field">
-                <select id="typeRecette" name="typeRecette" required>
+                <select id="idType" name="idType" required>
                     <option value="" disabled selected>Type de recette</option>
-                    <option value="entrée">Entrée</option>
-                    <option value="plat">Plat</option>
-                    <option value="dessert">Dessert</option>
+                    <option value="1">Entrée</option>
+                    <option value="2">Plat</option>
+                    <option value="3">Dessert</option>
                 </select>
             </div>
             <div class="input-field">
-                <input type="file" id="imageRecette" name="imageRecette" accept="image/*" required>
+                <input type="file" id="image" name="image" accept="image/*" required>
             </div>
             <div class="buttons">
-            <a href="../../index.php?controleur=recettes&action=consultationRecettes" class="cancel-btn">Annuler</a>
-            <a href="../../index.php?controleur=recettes&action=recetteAjoutee" class="create-btn">Créer</a>
+                <a href="index.php?action=consultationRecettes" class="cancel-btn">Annuler</a>
+                <button type="submit" class="create-btn">Créer</button>
             </div>
         </form>
     </div>
-    </body>
+</body>
 
