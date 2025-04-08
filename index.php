@@ -72,12 +72,14 @@ session_start();
                     case 'connexion' : 
                         require_once("./controleurs/controleurUtilisateur.php"); 
                         break;
+                    case 'mentionsLegales':
+                        require_once("./vues/v_mentionsLegales.php");
             }
 ?>
 
 
 <footer>
-<a href='./index.php'>Cliquez ici pour voir nos mentions légales</a>
+<a href='./index.php?controleur=mentionsLegales'>Cliquez ici pour voir nos mentions légales</a>
 </footer>
 </body>
 
