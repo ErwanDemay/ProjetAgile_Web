@@ -61,7 +61,7 @@ if (isset($_SESSION['message'])): ?>
                 <div class="button-container">
                 <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes&id=<?php echo $recette->getId(); ?>" class="card-button">Voir plus</a>
                 <a href="./index.php?controleur=recettes&action=updateRecette&id=<?php echo $recette->getId(); ?>" class="card-button">Modifier</a>
-                <a href="./index.php?controleur=recettes&action=deleteRecette&id=<?php echo $recette->getId(); ?>" class="card-button">Supprimer</a>
+                <a href="./index.php?controleur=recettes&action=deleteRecette&id=<?php echo $recette->getId(); ?>" class="card-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?')">Supprimer</a>
                 </div>
             </div>
             <?php endforeach; ?>

@@ -87,6 +87,10 @@ class RecetteDAO extends Base {
             $sql = "SELECT uneImage FROM Recette WHERE id = ?";
             
             $stmt = $this->prepare($sql);
+            
+            // Configurer PDO pour gérer correctement les données BLOB
+            $stmt->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+            
             $stmt->execute([$id]);
             
             // Récupération du résultat
@@ -102,6 +106,29 @@ class RecetteDAO extends Base {
             // Log de l'erreur
             error_log("Erreur lors de la récupération de l'image de la recette : " . $e->getMessage());
             return null;
+        }
+    }
+    
+    /**
+     * Supprime une recette de la base de données
+     * @param int $id - ID de la recette à supprimer
+     * @return bool - True si la suppression est réussie, false sinon
+     */
+    public function supprimerRecette($id) {
+        try {
+            // Préparation de la requête de suppression
+            $sql = "DELETE FROM Recette WHERE id = ?";
+            
+            $stmt = $this->prepare($sql);
+            
+            // Exécution de la requête avec l'ID
+            $resultat = $stmt->execute([$id]);
+            
+            return $resultat;
+        } catch (PDOException $e) {
+            // Log de l'erreur
+            error_log("Erreur lors de la suppression de la recette : " . $e->getMessage());
+            return false;
         }
     }
 }

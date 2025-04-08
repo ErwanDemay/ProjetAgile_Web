@@ -91,6 +91,37 @@ switch ($action){
         header('Location: index.php?controleur=recettes&action=consultationRecettes');
         exit();
         break;
+
+    case 'deleteRecette':
+        // Vérifier si l'ID de la recette est fourni
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            $_SESSION['erreur'] = "ID de recette non spécifié.";
+            header('Location: index.php?controleur=recettes&action=consultationRecettes');
+            exit();
+        }
+        
+        // Récupérer l'ID de la recette
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        
+        // Créer une instance de RecetteDAO
+        $recetteDAO = new RecetteDAO();
+        
+        // Supprimer la recette
+        $resultat = $recetteDAO->supprimerRecette($id);
+        
+        // Gérer le résultat
+        // if ($resultat) {
+        //     // Succès
+        //     $_SESSION['message'] = "La recette a été supprimée avec succès.";
+        // } else {
+        //     // Échec
+        //     $_SESSION['erreur'] = "Erreur lors de la suppression de la recette.";
+        // }
+        
+        // Rediriger vers la page des recettes
+        header('Location: index.php?controleur=recettes&action=consultationRecettes');
+        exit();
+        break;
     }
 
 
