@@ -4,6 +4,7 @@
 <body>
     <div class="form-container">
         <h2>Ajouter une recette</h2>
+        <!-- verifier le controleur -->
         <form action="index.php?controleur=recettes&action=recetteAdded" method="post" enctype="multipart/form-data">
             <div class="input-field">
                 <input type="text" id="libelle" name="libelle" placeholder="Nom de la recette" required>

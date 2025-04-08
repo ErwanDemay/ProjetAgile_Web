@@ -12,7 +12,7 @@ if (isset($_GET['action'])){
 $recetteDAO = new RecetteDAO();
 
 switch ($action){
-    case 'consultationRecettes'    :
+    case 'consultationRecettes':
                         if(isset($_SESSION['utilisateurConnecte'])){ 
                           $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
                           if($utilisateurConnecte->getRole() == "admin"){
@@ -26,158 +26,59 @@ switch ($action){
                         break;
 
     case 'consultationDetailsRecettes':
-      require_once("./vues/v_recettesDetail.php");
-      break;
+                        require_once("./vues/v_recettesDetail.php");
+                        break;
 
     case 'addRecette':
-      // Vérification des droits
-      if(!isset($_SESSION['utilisateurConnecte']) || 
-         unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
-          require_once("./vues/formulaires/v_formulaireAjoutRecette.php"); 
-          break;
-      }
-      
-      // Traitement de l'ajout de recette
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // Debug
-          error_log("POST reçu : " . print_r($_POST, true));
-          error_log("FILES reçu : " . print_r($_FILES, true));
-          
-          // Récupération et nettoyage des données
-          $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);
-          $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
-          $idType = filter_input(INPUT_POST, 'idType', FILTER_VALIDATE_INT);
+                        // Vérification des droits
+                        if(!isset($_SESSION['utilisateurConnecte']) || 
+                          unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+                            // Rediriger l'utilisateur non-admin
+                      require_once('./vues/formulaires/v_formulaireAjoutRecette.php');
+                      exit();
+                      }
+                      
+                      // Traitement de l'ajout de recette
+                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                          // Debug
+                          error_log("POST reçu : " . print_r($_POST, true));
+                          error_log("FILES reçu : " . print_r($_FILES, true));
+                          
+                          // Récupération et nettoyage des données
+                          $libelle = filter_var($_POST['libelle'] ?? '', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                          $description = filter_var($_POST['description'] ?? '', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                          $idType = filter_var($_POST['idType'] ?? 0, FILTER_VALIDATE_INT);
 
-          // Validation des données
-          $erreurs = [];
-          
-          if (empty($libelle)) {
-              $erreurs[] = "Le nom de la recette est requis";
-          }
-          
-          if (empty($description)) {
-              $erreurs[] = "La description est requise";
-          }
-          
-          if (!$idType) {
-              $erreurs[] = "Le type de recette est requis";
-          }
+                          // Gestion de l'image
+                          // Cette partie du code gère le téléchargement d'une image pour la recette
+                          $image = null;  // On initialise la variable $image à null (pas d'image par défaut)
+                          
+                          // On vérifie si une image a été téléchargée et s'il n'y a pas d'erreur
+                          if (isset($_FILES['image'])){
+                              // Si une image a été correctement téléchargée, on lit son contenu
+                              // $_FILES['image']['tmp_name'] est le chemin temporaire où l'image est stockée
+                              // file_get_contents() transforme le fichier en données binaires
+                              // Ces données pourront être stockées dans la base de données
+                              $image = file_get_contents($_FILES['image']['tmp_name']);
+                          }
+                          // À la fin, $image contient soit les données de l'image, soit null si aucune image n'a été téléchargée
 
-          // Gestion de l'image
-          $image = null;
-          if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-              $image = file_get_contents($_FILES['image']['tmp_name']);
-          }
-
-          // Si pas d'erreurs, on procède à l'ajout
-          if (empty($erreurs)) {
-              try {
-                  $resultat = $recetteDAO->ajoutRecettes($libelle, $description, $image, $idType);
-                  
-                  if ($resultat) {
-                      echo '<div class="alert alert-success">La recette a été ajoutée avec succès</div>';
-                  } else {
-                      echo '<div class="alert alert-danger">Erreur lors de l\'ajout de la recette</div>';
+                          // Si pas d'erreurs, on procède à l'ajout
+                          
+                              try {
+                                  $resultat = $recetteDAO->ajoutRecettes($libelle, $description, $image, $idType);
+                                  
+                                  if ($resultat) {
+                                      // Redirection vers la page de consultation après l'ajout
+                                      header('Location: index.php?controleur=recettes&action=consultationRecettes');
+                                      exit();
+                                  } else {
+                                      echo('Erreur lors de l\'ajout de la recette');
+                                  }
+                              } catch (Exception $e) {
+                                  echo($e->getMessage());
+                              }
                   }
-              } catch (Exception $e) {
-                  echo '<div class="alert alert-danger">Une erreur est survenue : ' . $e->getMessage() . '</div>';
-              }
-          } else {
-              echo '<div class="alert alert-danger">';
-              echo 'Veuillez corriger les erreurs suivantes :';
-              echo '<ul>';
-              foreach ($erreurs as $erreur) {
-                  echo '<li>' . $erreur . '</li>';
-              }
-              echo '</ul>';
-              echo '</div>';
-          }
-          
-          // Redirection vers la page de consultation
-          header('Location: index.php?action=consultationRecettes');
-          exit();
-      } else {
-          // Affichage du formulaire d'ajout
-          require_once(__DIR__ . "/../vues/formulaires/v_formulaireAjoutRecette.php");
-      }
-      break;
-
-    case 'updateRecette'    :
-      require_once("./vues/formulaires/v_formulaireModifRecette.php");
-      break;
-
-    case 'recetteAdded'    :
-      // Vérification des droits
-      if(!isset($_SESSION['utilisateurConnecte']) || 
-         unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
-          header('Location: index.php?action=consultationRecettes');
-          exit();
-      }
-      
-      // Traitement de l'ajout de recette
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // Debug
-          error_log("POST reçu : " . print_r($_POST, true));
-          error_log("FILES reçu : " . print_r($_FILES, true));
-          
-          // Récupération et nettoyage des données
-          $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);
-          $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
-          $idType = filter_input(INPUT_POST, 'idType', FILTER_VALIDATE_INT);
-
-          // Validation des données
-          $erreurs = [];
-          
-          if (empty($libelle)) {
-              $erreurs[] = "Le nom de la recette est requis";
-          }
-          
-          if (empty($description)) {
-              $erreurs[] = "La description est requise";
-          }
-          
-          if (!$idType) {
-              $erreurs[] = "Le type de recette est requis";
-          }
-
-          // Gestion de l'image
-          $image = null;
-          if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-              $image = file_get_contents($_FILES['image']['tmp_name']);
-          } else {
-              $erreurs[] = "L'image est requise";
-          }
-
-          // Si pas d'erreurs, on procède à l'ajout
-          if (empty($erreurs)) {
-              try {
-                  $resultat = $recetteDAO->ajoutRecettes($libelle, $description, $image, $idType);
-                  
-                  if ($resultat) {
-                      $_SESSION['message'] = 'La recette a été ajoutée avec succès';
-                      $_SESSION['messageType'] = 'success';
-                  } else {
-                      $_SESSION['message'] = 'Erreur lors de l\'ajout de la recette';
-                      $_SESSION['messageType'] = 'error';
-                  }
-              } catch (Exception $e) {
-                  $_SESSION['message'] = 'Une erreur est survenue : ' . $e->getMessage();
-                  $_SESSION['messageType'] = 'error';
-              }
-          } else {
-              $_SESSION['message'] = 'Veuillez corriger les erreurs suivantes :';
-              $_SESSION['erreurs'] = $erreurs;
-              $_SESSION['messageType'] = 'error';
-          }
-          
-          // Redirection vers la page de consultation
-          header('Location: index.php?action=consultationRecettes');
-          exit();
-      } else {
-          // Si ce n'est pas une requête POST, rediriger vers la page de consultation
-          header('Location: index.php?action=consultationRecettes');
-          exit();
-      }
-      break;
-}
+                
+                }
 ?>
