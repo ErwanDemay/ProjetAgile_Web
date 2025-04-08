@@ -10,6 +10,8 @@ class Base {
         $this->poivre = getenv('APP_POIVRE');
    }
 
+   
+
    private function chargerVariablesEnvironnement() {
         $envFile = __DIR__ . '/../.env';
         if (file_exists($envFile)) {

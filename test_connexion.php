@@ -11,6 +11,18 @@ class TestConnexion extends Base {
 $test = new TestConnexion();
 $resultat = $test->testerConnexion();
 
-// Affichage du résultat
-header('Content-Type: application/json');
-echo json_encode($resultat, JSON_PRETTY_PRINT); 
+// Affichage du résultat de manière plus lisible
+echo "<h2>Test de connexion à la base de données</h2>";
+if ($resultat['success']) {
+    echo "<p style='color: green;'>✅ " . $resultat['message'] . "</p>";
+} else {
+    echo "<p style='color: red;'>❌ " . $resultat['message'] . "</p>";
+}
+
+// Affichage des informations de connexion (sans le mot de passe)
+echo "<h3>Informations de connexion :</h3>";
+echo "<ul>";
+echo "<li>Host : " . getenv('DB_HOST') . "</li>";
+echo "<li>Base de données : " . getenv('DB_NAME') . "</li>";
+echo "<li>Utilisateur : " . getenv('DB_USER') . "</li>";
+echo "</ul>"; 
