@@ -33,7 +33,7 @@ session_start();
 <nav class="navbar">
   <a href="./index.php" class="nav-title">CookFusions Lab</a>
         <div class="nav-links">
-            <a href="./index.php?controleur=recettes" data-index="0">Nos recettes</a>
+            <a href="./index.php?controleur=recettes&action=consultationRecettes" data-index="0">Nos recettes</a>
             <a href="./index.php?controleur=sessions" data-index="1">Prochaines sessions</a>
             <?php
             //if(isset($_SESSION['utilisateurConnecte'])){ 
