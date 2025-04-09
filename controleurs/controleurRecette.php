@@ -90,7 +90,6 @@ switch ($action){
         // Rediriger vers la page des recettes
         header('Location: index.php?controleur=recettes&action=consultationRecettes');
         exit();
-        break;
 
     case 'deleteRecette':
         // Vérifier si l'ID de la recette est fourni
@@ -121,7 +120,6 @@ switch ($action){
         // Rediriger vers la page des recettes
         header('Location: index.php?controleur=recettes&action=consultationRecettes');
         exit();
-        break;
     }
 
 
