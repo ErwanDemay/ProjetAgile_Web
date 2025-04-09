@@ -119,5 +119,76 @@ public function ajoutSession($nomSession, $dateSession, $heureDebut, $heureFin, 
     }
 }
 
+public function supprimerSession($id) {
+    try {
+        // Préparation de la requête de suppression
+        $sql = "DELETE FROM Session WHERE id = ?";
+        
+        // Préparation de la requête SQL
+        $stmt = $this->prepare($sql);
+
+        // Exécution de la requête avec l'ID de la session à supprimer
+        $resultat = $stmt->execute([$id]);
+
+        return $resultat;
+    } catch (PDOException $e) {
+        // Log de l'erreur (à implémenter selon vos besoins)
+        error_log("Erreur lors de la suppression de la session : " . $e->getMessage());
+        return false;
+    }
+}
+
+public function getUneSession($id) {
+    try {
+        $sql = "SELECT * FROM Session WHERE id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$id]);
+
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($resultat) {
+            return new Session(
+                $resultat['id'],
+                $resultat['nomSession'],
+                $resultat['dateSession'],
+                $resultat['heureDebut'],
+                $resultat['heureFin'],
+                $resultat['prix'],
+                $resultat['nbPlaces']
+            );
+        }
+
+        return null;
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la récupération de la session : " . $e->getMessage());
+        return null;
+    }
+}
+
+public function updateSession($laSession) {
+    try {
+        $sql = "UPDATE Session 
+                SET nomSession = ?, dateSession = ?, heureDebut = ?, heureFin = ?, prix = ?, nbPlaces = ? 
+                WHERE id = ?";
+        
+        $stmt = $this->prepare($sql);
+
+        $resultat = $stmt->execute([
+            $laSession->getNomSession(),
+            $laSession->getDateSession(),
+            $laSession->getHeureDebut(),
+            $laSession->getHeureFin(),
+            $laSession->getPrix(),
+            $laSession->getNbPlaces(),
+            $laSession->getId()
+        ]);
+
+        return $resultat;
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la mise à jour de la session : " . $e->getMessage());
+        return false;
+    }
+}
+
 }
 ?>
