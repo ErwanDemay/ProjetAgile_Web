@@ -26,7 +26,7 @@ switch ($action){
       $heureDebut = filter_var($_POST['heureDebut'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);   // Format: HH:MM:SS
       $heureFin = filter_var($_POST['heureFin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);       // Format: HH:MM:SS
       $prix = filter_var($_POST['prix'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-      $nbPlaces = filter_var($_POST['nbPlaces'], FILTER_SANITIZE_NUMBER_INT);
+      $nbPlaces = filter_var($_POST['nbPlacesSession'], FILTER_SANITIZE_NUMBER_INT);
     
       // Créer l'objet Session
       $laSession = new Session(

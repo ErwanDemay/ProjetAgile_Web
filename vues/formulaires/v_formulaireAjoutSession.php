@@ -18,10 +18,10 @@
                 <input type="time" id="heureFin" name="heureFin" placeholder="Heure de fin" required>
             </div>
             <div class="input-field">
-                <input type="text" id="prixSession" name="prixSession" placeholder="Prix de la session" required>
+                <input type="number" id="prixSession" name="prixSession" placeholder="Prix de la session" required>
             </div>
             <div class="input-field">
-                <input type="text" id="nbPlacesSession" name="nbPlacesSession" placeholder="Nombre de places" required>
+                <input type="number" id="nbPlacesSession" name="nbPlacesSession" placeholder="Nombre de places" required>
             </div>
             <div class="buttons">
                 <a href="index.php?controleur=sessions&action=consultationSessions" class="cancel-btn">Annuler</a>

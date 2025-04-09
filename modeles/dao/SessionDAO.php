@@ -92,5 +92,32 @@ public function getNbPlacesRestantes($Session) {
     }
 }
 
+public function ajoutSession($nomSession, $dateSession, $heureDebut, $heureFin, $prix, $nbPlaces) {
+    try {
+        // Préparation de la requête d'insertion
+        $sql = "INSERT INTO Session (nomSession, dateSession, heureDebut, heureFin, prix, nbPlaces) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+        
+        // Préparation de la requête SQL
+        $stmt = $this->prepare($sql);
+        
+        // Exécution de la requête avec les paramètres
+        $resultat = $stmt->execute([
+            $nomSession,  // Nom de la session
+            $dateSession, // Date de la session (format: YYYY-MM-DD)
+            $heureDebut,  // Heure de début de la session (format: HH:MM:SS)
+            $heureFin,    // Heure de fin de la session (format: HH:MM:SS)
+            $prix,        // Prix de la session
+            $nbPlaces     // Nombre de places disponibles
+        ]);
+
+        return $resultat;
+    } catch (PDOException $e) {
+        // Log de l'erreur (à implémenter selon vos besoins)
+        error_log("Erreur lors de l'ajout de la session : " . $e->getMessage());
+        return false;
+    }
+}
+
 }
 ?>
