@@ -4,7 +4,7 @@ body {
 }
 
 .form-container {
-  max-width: 52.5vw; /* Était 35vw */
+  width: 30%; /* Était 35vw */
   margin: 15vh auto 0; /* Ajout d'une marge en haut pour éviter d'être caché par la navbar */
   padding: 2.25vh; /* Était 1.5vh */
   background-color: #e0e0e0;
