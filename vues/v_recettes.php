@@ -38,11 +38,12 @@ if (isset($_SESSION['message'])): ?>
         </div>
         <div class="menu">
             <div class="dropdown">
-                <button class="menu-button">Filtres</button>
+                <button class="menu-button">Filtres par type</button>
                 <div class="dropdown-content">
-                    <button>Entrée</button>
-                    <button>Plat</button>
-                    <button>Dessert</button>
+                    <a href="index.php?controleur=recettes&action=consultationRecettes">Toutes les recettes</a>
+                    <a href="index.php?controleur=recettes&action=consultationRecettes&type=1">Entrées</a>
+                    <a href="index.php?controleur=recettes&action=consultationRecettes&type=2">Plats</a>
+                    <a href="index.php?controleur=recettes&action=consultationRecettes&type=3">Desserts</a>
                 </div>
             </div>
         </div>
@@ -56,11 +57,11 @@ if (isset($_SESSION['message'])): ?>
             <div class="card">
                 <div class="card-header"><?php echo $recette->getLibelle(); ?></div>
                 <div class="card-body">
-                <img src="../afficherImage.php?id=<?php echo $recette->getId(); ?>" alt="<?php echo $recette->getLibelle(); ?>" class="card-image">
+                <img src="<?php echo $recette->getUneImage(); ?>" alt="<?php echo $recette->getLibelle(); ?>" class="card-image">
                 </div>
                 <div class="button-container">
                 <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes&id=<?php echo $recette->getId(); ?>" class="card-button">Voir plus</a>
-                <a href="./index.php?controleur=recettes&action=updateRecette&id=<?php echo $recette->getId(); ?>" class="card-button">Modifier</a>
+                <a href="./index.php?controleur=recettes&action=editRecette&id=<?php echo $recette->getId(); ?>" class="card-button">Modifier</a>
                 <a href="./index.php?controleur=recettes&action=deleteRecette&id=<?php echo $recette->getId(); ?>" class="card-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?')">Supprimer</a>
                 </div>
             </div>
