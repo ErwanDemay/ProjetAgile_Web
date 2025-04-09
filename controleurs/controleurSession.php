@@ -17,6 +17,10 @@ switch ($action){
       require_once("./vues/formulaires/v_formulaireAjoutSession.php");
       break;
 
+    case 'sessionAdded'    :
+      require_once("./vues/formulaires/v_formulaireAjoutSession.php");
+      break;
+
     case 'updateSession'    :
       require_once("./vues/formulaires/v_formulaireModifSession.php");
       break;

@@ -4,7 +4,7 @@
 <body>
     <div class="form-container">
         <h2>Ajouter une session</h2>
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="../../index.php?controleur=sessions&action=sessionAdded" method="POST" enctype="multipart/form-data">
             <div class="input-field">
                 <input type="text" id="nomSession" name="nomSession" placeholder="Nom de la session" required>
             </div>
