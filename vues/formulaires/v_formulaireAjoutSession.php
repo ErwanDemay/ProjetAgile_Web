@@ -25,7 +25,7 @@
             </div>
             <div class="buttons">
                 <a href="index.php?controleur=sessions&action=consultationSessions" class="cancel-btn">Annuler</a>
-                <a href="index.php?controleur=sessions&action=sessionAdded" class="create-btn">Créer</a>
+                <button type="submit" class="create-btn">Créer</button>
             </div>
         </form>
     </div>
