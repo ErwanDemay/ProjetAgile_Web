@@ -18,7 +18,8 @@ class SessionDAO extends Base{
      * @return $lesObjSessions   collection de toutes les sessions sous forme d'objets session
      */
     public function getLesSessions(){
-        $ordreSQL = "SELECT * FROM Session;";
+        try {
+        $ordreSQL = "SELECT * FROM Session";
         $reqPrepa = $this->prepare($ordreSQL);
         $reqPrepa->execute();
     
@@ -43,31 +44,36 @@ class SessionDAO extends Base{
         }
     
         return $lesObjSessions;
+    }
+    catch (PDOException $e){
+        error_log("erreur lors de la récupération des sessions" . $e->getMessage());
+        return[];
+    }
     }    
-}
+
 
 /**
  * Retourne le nombre de places restantes d'une session donnée
- * @param $session    objet session dont on cherche le nombre de places restantes
+ * @param $Session    objet session dont on cherche le nombre de places restantes
  * @return int        entier correspondant au nombre de places restantes
  */
-public function getNbPlacesRestantes($session) {
-    // 1. Récupère le nombre de places réservées par les utilisateurs
-    $ordreSQL = "SELECT SUM(r.nbPlacesReservees) AS placesReservees
-                 FROM Reserver r
-                 INNER JOIN Session s ON s.id = r.id_Session
-                 WHERE s.id = :id";
+public function getNbPlacesRestantes($Session) {
+    // Récupération de l'ID de la session
+    $id = $Session->getId();
+
+    // 1. Compter le nombre de réservations pour cette session
+    $ordreSQL = "SELECT COUNT(*) AS placesReservees
+                 FROM Reserver
+                 WHERE id = :id";
 
     $reqPrepa = $this->prepare($ordreSQL);
-    $id = $session->getId();
     $reqPrepa->bindParam(':id', $id);
     $reqPrepa->execute();
-    $resultatDeLaRequete = $reqPrepa->fetch(); 
+    $resultat = $reqPrepa->fetch();
 
-    // Si des réservations existent, on récupère le total des places réservées
-    $placesReservees = $resultatDeLaRequete['placesReservees'] ? (int) $resultatDeLaRequete['placesReservees'] : 0;
+    $placesReservees = isset($resultat['placesReservees']) ? (int) $resultat['placesReservees'] : 0;
 
-    // 2. Récupère le nombre total de places dans la session
+    // 2. Récupérer le nombre total de places dans la session
     $ordreSQL = "SELECT nbPlaces AS placesTotales
                  FROM Session
                  WHERE id = :id";
@@ -75,17 +81,16 @@ public function getNbPlacesRestantes($session) {
     $reqPrepa = $this->prepare($ordreSQL);
     $reqPrepa->bindParam(':id', $id);
     $reqPrepa->execute();
-    $resultatDeLaRequete = $reqPrepa->fetch();
+    $resultat = $reqPrepa->fetch();
 
-    // Si le nombre total de places existe, on calcule les places restantes
-    if ($resultatDeLaRequete) {
-        $placesTotales = (int) $resultatDeLaRequete['placesTotales'];
-        // Nombre de places restantes = nombre total de places - places réservées
+    if ($resultat) {
+        $placesTotales = (int) $resultat['placesTotales'];
         $placesRestantes = $placesTotales - $placesReservees;
-        return $placesRestantes >= 0 ? $placesRestantes : 0;  // En cas de nombre négatif, on retourne 0
+        return $placesRestantes >= 0 ? $placesRestantes : 0;
     } else {
-        return 0;  // Si la session n'existe pas ou il y a une erreur, on retourne 0
+        return 0;
     }
 }
 
+}
 ?>

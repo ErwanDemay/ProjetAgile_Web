@@ -10,7 +10,6 @@ switch ($action){
     case 'consultationSessions'    :
       $connexionBD = new SessionDAO();
       $lesSessions = $connexionBD->getLesSessions();
-      var_dump($lesSessions);
       require_once("./vues/v_sessions.php");
       break;
 
