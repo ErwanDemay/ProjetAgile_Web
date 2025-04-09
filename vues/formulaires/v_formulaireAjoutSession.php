@@ -4,7 +4,7 @@
 <body>
     <div class="form-container">
         <h2>Ajouter une session</h2>
-        <form action="../../index.php?controleur=sessions&action=sessionAdded" method="POST" enctype="multipart/form-data">
+        <form action="index.php?controleur=sessions&action=sessionAdded" method="POST" enctype="multipart/form-data">
             <div class="input-field">
                 <input type="text" id="nomSession" name="nomSession" placeholder="Nom de la session" required>
             </div>
@@ -24,8 +24,8 @@
                 <input type="text" id="nbPlacesSession" name="nbPlacesSession" placeholder="Nombre de places" required>
             </div>
             <div class="buttons">
-                <a href="../../index.php?controleur=sessions&action=consultationSessions" class="cancel-btn">Annuler</a>
-                <a href="../../index.php?controleur=sessions&action=sessionAjoutee" class="create-btn">Créer</a>
+                <a href="index.php?controleur=sessions&action=consultationSessions" class="cancel-btn">Annuler</a>
+                <a href="index.php?controleur=sessions&action=sessionAdded" class="create-btn">Créer</a>
             </div>
         </form>
     </div>
