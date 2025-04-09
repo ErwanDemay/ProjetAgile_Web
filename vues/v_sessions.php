@@ -33,7 +33,7 @@
                         "<td><p>" . htmlspecialchars($Session->getDateSession()) . "</p></td>" .
                         "<td><p>" . htmlspecialchars($Session->getHeureDebut()) . "</p></td>" .
                         "<td><p>" . htmlspecialchars($Session->getHeureFin()) . "</p></td>" .
-                        "<td><p>" . htmlspecialchars($Session->getPrix()) . "</p></td>" .
+                        "<td><p>" . htmlspecialchars($Session->getPrix()) . " €</p></td>" .
                         "<td><p>" . htmlspecialchars($Session->getNbPlaces()) . "</p></td>" .
                         "<td><p>" . htmlspecialchars($connexionBD->getNbPlacesRestantes($Session)) . "</p></td>" .
                         "<td>" .
