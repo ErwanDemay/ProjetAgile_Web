@@ -179,6 +179,5 @@ switch ($action){
         }
         header('Location: index.php?controleur=sessions');
         exit();
-        break;
 }
 ?>

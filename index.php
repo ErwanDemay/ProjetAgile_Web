@@ -35,6 +35,7 @@ session_start();
         <div class="nav-links">
             <a href="./index.php?controleur=recettes&action=consultationRecettes" data-index="0">Nos recettes</a>
             <a href="./index.php?controleur=sessions" data-index="1">Prochaines sessions</a>
+            <a href="./index.php?controleur=utilisateurs&action=creationCompte" data-index="1">Créer un compte</a>
             <?php
             //if(isset($_SESSION['utilisateurConnecte'])){ 
             //  $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
