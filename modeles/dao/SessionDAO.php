@@ -193,7 +193,7 @@ public function updateSession($laSession) {
 
 public function getLesRecettesDeLaSession($idSession) {
     // Préparer la requête SQL pour récupérer les recettes associées à la session
-    $query = "SELECT r.libelle, r.description, r.uneImage, r.dateAjout
+    $query = "SELECT r.id, r.libelle, r.description, r.uneImage, r.dateAjout
               FROM Recette r
               JOIN Proposer p ON r.id = p.id
               WHERE p.id_Session = :idSession";

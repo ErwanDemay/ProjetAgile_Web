@@ -8,7 +8,7 @@
 
     <!-- Formulaire pour ajouter une recette à la session -->
     <form method="POST" action="index.php?controleur=sessions&action=addRecetteASession">
-        <input type="hidden" value="<?php echo htmlspecialchars($session->getId()); ?>">
+        <input type="hidden" name="session_id" value="<?php echo htmlspecialchars($session->getId()); ?>">
         <!-- Sélection de la recette à ajouter à la session -->
         <label for="recette_id">Sélectionner une recette :</label>
         <select name="recette_id" id="recette_id" required>
