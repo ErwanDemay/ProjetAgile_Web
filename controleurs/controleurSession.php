@@ -1,6 +1,8 @@
 <?php
 require_once("./modeles/Session.php");
+require_once("./modeles/Recette.php");
 require_once("./modeles/DAO/SessionDAO.php");
+require_once("./modeles/DAO/RecetteDAO.php");
 
 if (isset($_GET['action'])){
     $action=filter_var($_GET['action'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -17,6 +19,48 @@ switch ($action){
       require_once("./vues/formulaires/v_formulaireAjoutSession.php");
       break;
 
+      case 'addRecetteASession':
+        $sessionDAO = new SessionDAO();
+        $recetteDAO = new RecetteDAO();
+        $proposerDAO = new ProposerDAO();
+
+        // Si le formulaire a été soumis
+        if (isset($_POST['recette_id']) && isset($_POST['session_id'])) {
+            $idRecette = filter_var($_POST['recette_id'], FILTER_SANITIZE_NUMBER_INT);
+            $idSession = filter_var($_POST['session_id'], FILTER_SANITIZE_NUMBER_INT);
+
+            // Ajoute la recette à la session
+            if ($proposerDAO->ajouterRecetteASession($idRecette, $idSession)) {
+                $_SESSION['message'] = "La recette a été ajoutée à la session avec succès.";
+            } else {
+                $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette à la session.";
+            }
+
+            // Redirige vers la liste des sessions
+            header("Location: index.php?controleur=sessions");
+            exit();
+        }
+
+        // Si on arrive ici, c'est pour afficher le formulaire
+        if (isset($_GET['id'])) {
+            $idSession = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+            $session = $sessionDAO->getUneSession($idSession);
+
+            if ($session) {
+                $recettesDisponibles = $recetteDAO->getAllRecettes();
+                require_once("./vues/formulaires/v_formulaireAjoutRecetteASession.php");
+            } else {
+                $_SESSION['erreur'] = "Session non trouvée.";
+                header("Location: index.php?controleur=sessions");
+                exit();
+            }
+        } else {
+            $_SESSION['erreur'] = "ID de session manquant.";
+            header("Location: index.php?controleur=sessions");
+            exit();
+        }
+        break;    
+    
     case 'sessionAdded':
       $sessionDAO = new SessionDAO();
     
@@ -54,8 +98,6 @@ switch ($action){
       // Rediriger vers la page des sessions
       header('Location: index.php?controleur=sessions&action=consultationSessions');
       exit();
-      break;
-
     case 'updateSession':
   
       // Récupérer l'ID de la session à modifier
@@ -90,7 +132,6 @@ switch ($action){
         // Rediriger vers la page des sessions après modification
         header('Location: index.php?controleur=sessions');
         exit();
-        break;    
 
     case 'deleteSession':
       // Vérifier si l'ID de la session est fourni
@@ -121,7 +162,23 @@ switch ($action){
       // Rediriger vers la page des sessions
       header('Location: index.php?controleur=sessions&action=consultationSessions');
       exit();
-      break;
-    
+
+    case 'supprimerRecetteSession':
+        if (isset($_GET['idRecette']) && isset($_GET['idSession'])) {
+            $idRecette = filter_var($_GET['idRecette'], FILTER_SANITIZE_NUMBER_INT);
+            $idSession = filter_var($_GET['idSession'], FILTER_SANITIZE_NUMBER_INT);
+            
+            $proposerDAO = new ProposerDAO();
+            if ($proposerDAO->supprimerRecetteDeSession($idRecette, $idSession)) {
+                $_SESSION['message'] = "La recette a été retirée de la session avec succès.";
+            } else {
+                $_SESSION['erreur'] = "Erreur lors de la suppression de la recette de la session.";
+            }
+        } else {
+            $_SESSION['erreur'] = "Paramètres manquants pour la suppression.";
+        }
+        header('Location: index.php?controleur=sessions');
+        exit();
+        break;
 }
 ?>
