@@ -15,20 +15,6 @@
   align-items: center;
 }
 
-.search-bar {
-  width: 100%;
-  padding: 1.5vh;
-  border-radius: 2vw;
-  border: none;
-  font-size: 1vw; /* Taille de police responsive */
-  background-color: var(--nav-background);
-  color: var(--text-light);
-}
-
-.search-bar::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .search svg {
   position: absolute;
   right: 1vw;
