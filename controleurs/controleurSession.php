@@ -1,6 +1,8 @@
 <?php
 require_once("./modeles/Session.php");
+require_once("./modeles/Recette.php");
 require_once("./modeles/DAO/SessionDAO.php");
+require_once("./modeles/DAO/RecetteDAO.php");
 
 if (isset($_GET['action'])){
     $action=filter_var($_GET['action'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -17,6 +19,47 @@ switch ($action){
       require_once("./vues/formulaires/v_formulaireAjoutSession.php");
       break;
 
+      case 'addRecetteASession':
+        $sessionDAO = new SessionDAO();
+        $recetteDAO = new RecetteDAO();
+        $proposerDAO = new ProposerDAO(); // On instancie le DAO pour gérer l'ajout dans la table Proposer
+    
+        // Vérifie que l'ID de la session est bien passé dans l'URL
+        if (isset($_GET['id'])) {
+            // Récupère l'ID de la session
+            $idSession = $_GET['id'];
+    
+            // Utilise ton SessionDAO pour récupérer l'objet session
+            $session = $sessionDAO->getUneSession($idSession);
+    
+            // Vérifie que la session a bien été trouvée
+            if ($session) {
+                // Si une recette a été envoyée via le formulaire
+                if (isset($_POST['recette_id']) && !empty($_POST['recette_id'])) {
+                    $idRecette = $_POST['recette_id'];
+    
+                    // Appelle la méthode pour ajouter la recette à la session
+                    $proposerDAO->ajouterRecetteASession($idRecette, $idSession);
+    
+                    // Redirige après l'ajout de la recette pour éviter que le formulaire soit soumis plusieurs fois
+                    header("Location: index.php?controleur=sessions");
+                    exit();
+                }
+    
+                // Récupère toutes les recettes disponibles pour le formulaire
+                $recettesDisponibles = $recetteDAO->getAllRecettes(); // méthode à adapter en fonction de ton DAO
+                // Passe l'objet session à la vue
+                require_once("./vues/formulaires/v_formulaireAjoutRecetteASession.php");
+            } else {
+                // Gère le cas où la session n'a pas été trouvée
+                echo "Session non trouvée.";
+            }
+        } else {
+            // Si l'ID de la session n'est pas passé, redirige ou affiche une erreur
+            echo "ID de la session manquant.";
+        }
+        break;    
+    
     case 'sessionAdded':
       $sessionDAO = new SessionDAO();
     

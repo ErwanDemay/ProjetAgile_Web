@@ -2,6 +2,7 @@
 // Include de la classe Base qui contient la connexion
 include_once (__DIR__ . "/../Base.php");
 include_once (__DIR__ . "/../Session.php");
+include_once (__DIR__ . "/../dao/ProposerDAO.php");
 class SessionDAO extends Base{
     
     /**
@@ -190,5 +191,29 @@ public function updateSession($laSession) {
     }
 }
 
+public function getLesRecettesDeLaSession($idSession) {
+    // Préparer la requête SQL pour récupérer les recettes associées à la session
+    $query = "SELECT r.libelle, r.description, r.uneImage, r.dateAjout
+              FROM Recette r
+              JOIN Proposer p ON r.id = p.id
+              WHERE p.id_Session = :idSession";
+
+    // Préparer la requête avec la connexion
+    $stmt = $this->prepare($query);
+    $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
+
+    // Exécuter la requête
+    $stmt->execute();
+
+    // Récupérer les résultats
+    $recettes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Vérifier si des recettes ont été trouvées
+    if ($recettes) {
+        return $recettes;
+    } else {
+        return null; // Retourne null si aucune recette n'est trouvée
+    }
+}
 }
 ?>
