@@ -163,18 +163,18 @@ switch ($action){
         error_log("Tentative d'ajout de la recette avec l'image : " . $imagePath);
         $resultat = $recetteDAO->ajoutRecettes($libelle, $description, $imagePath, $idType);
         
-        if ($resultat) {
-            error_log("Recette ajoutée avec succès");
-            $_SESSION['message'] = "La recette a été ajoutée avec succès.";
-        } else {
-            error_log("Échec de l'ajout de la recette");
-            // En cas d'échec, on supprime l'image uploadée
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-                error_log("Image supprimée après échec de l'ajout");
-            }
-            $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette.";
-        }
+        // if ($resultat) {
+        //     error_log("Recette ajoutée avec succès");
+        //     $_SESSION['message'] = "La recette a été ajoutée avec succès.";
+        // } else {
+        //     error_log("Échec de l'ajout de la recette");
+        //     // En cas d'échec, on supprime l'image uploadée
+        //     if (file_exists($imagePath)) {
+        //         unlink($imagePath);
+        //         error_log("Image supprimée après échec de l'ajout");
+        //     }
+        //     $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette.";
+        // }
 
         header('Location: index.php?controleur=recettes&action=consultationRecettes');
         exit();
@@ -201,19 +201,19 @@ switch ($action){
         $resultat = $recetteDAO->supprimerRecette($id);
         
         // Gérer le résultat
-        if ($resultat) {
-            // Succès
-            $_SESSION['message'] = "La recette a été supprimée avec succès.";
+        // if ($resultat) {
+        //     // Succès
+        //     $_SESSION['message'] = "La recette a été supprimée avec succès.";
             
-            // Supprimer l'image si elle existe
-            if ($recette && $recette->getUneImage() && file_exists($recette->getUneImage())) {
-                unlink($recette->getUneImage());
-                error_log("Image supprimée : " . $recette->getUneImage());
-            }
-        } else {
-            // Échec
-            $_SESSION['erreur'] = "Erreur lors de la suppression de la recette.";
-        }
+        //     // Supprimer l'image si elle existe
+        //     if ($recette && $recette->getUneImage() && file_exists($recette->getUneImage())) {
+        //         unlink($recette->getUneImage());
+        //         error_log("Image supprimée : " . $recette->getUneImage());
+        //     }
+        // } else {
+        //     // Échec
+        //     $_SESSION['erreur'] = "Erreur lors de la suppression de la recette.";
+        // }
         
         // Rediriger vers la page des recettes
         header('Location: index.php?controleur=recettes&action=consultationRecettes');

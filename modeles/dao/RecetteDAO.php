@@ -280,15 +280,16 @@ class RecetteDAO extends Base {
      * @param int $limit - Nombre de recettes à récupérer
      * @return array - Tableau d'objets Recette
      */
-    public function getLastRecettes($limit = 3) {
+    public function getLastRecettes() {
         try {
-            error_log("Tentative de récupération des " . $limit . " dernières recettes");
+            error_log("Tentative de récupération des 3 dernières recettes par ID");
             
-            // Préparation de la requête de sélection
-            $sql = "SELECT * FROM Recette ORDER BY dateAjout DESC LIMIT ?";
+            // Préparation de la requête de sélection - tri par ID décroissant
+            $sql = "SELECT * FROM Recette ORDER BY id DESC LIMIT 3";
+            error_log("Requête SQL : " . $sql);
             
             $stmt = $this->prepare($sql);
-            $stmt->execute([$limit]);
+            $stmt->execute();
             
             $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
@@ -307,7 +308,7 @@ class RecetteDAO extends Base {
             
             return $recettes;
         } catch (PDOException $e) {
-            error_log("Erreur lors de la récupération des dernières recettes : " . $e->getMessage());
+            error_log("Erreur lors de la récupération des recettes : " . $e->getMessage());
             return [];
         }
     }

@@ -55,7 +55,7 @@ session_start();
                     
             switch ($controleur){
                     case 'default':
-                        require_once("./vues/v_index.php"); 
+                        require_once("./controleurs/controleurIndex.php"); 
                         break;
                     case 'sessions' : 
                         require_once("./controleurs/controleurSession.php"); 

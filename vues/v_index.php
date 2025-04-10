@@ -20,28 +20,22 @@
     <h2>Nos 3 dernières recettes</h2>
   </div> 
   <section class="card-container">
-    <div class="card">
-      <div class="card-header">Image 1</div>
-      <div class="card-body">
-        <img src="../images/logoCookFusionLab.png" alt="Image 1" class="card-image">
+    <?php if (isset($lesRecettes) && !empty($lesRecettes)): ?>
+      <?php foreach ($lesRecettes as $recette): ?>
+      <div class="card">
+        <div class="card-header"><?php echo $recette->getLibelle(); ?></div>
+        <div class="card-body">
+          <img src="<?php echo $recette->getUneImage(); ?>" alt="<?php echo $recette->getLibelle(); ?>" class="card-image">
+        </div>
+        <div class="button-container">
+          <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes&id=<?php echo $recette->getId(); ?>" class="card-button">Voir plus</a>
+        </div>
       </div>
-      <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationDetailsRecettes'">Voir plus</button>
-    </div>
-    <div class="card">
-      <div class="card-header">Image 2</div>
-      <div class="card-body">
-        <img src="../images/logoCookFusion.png" alt="Image 2" class="card-image">
-      </div>
-      <button class="card-button">Voir plus</button>
-    </div>
-    <div class="card">
-      <div class="card-header">Image 3</div>
-      <div class="card-body">
-        <img src="../images/logoCookFusion.png" alt="Image 3" class="card-image">
-      </div>
-      <button class="card-button">Voir plus</button>
-    </div>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <p>Aucune recette disponible pour le moment.</p>
+    <?php endif; ?>
   </section>
 </main>
 </body>
-</html>
+</html> 
