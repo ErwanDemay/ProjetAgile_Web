@@ -321,18 +321,18 @@ switch ($action){
         // Modifier la recette
         $resultat = $recetteDAO->modifierRecette($id, $libelle, $description, $imagePath, $idType);
         
-        // Gérer le résultat
-        if ($resultat) {
-            $_SESSION['message'] = "La recette a été modifiée avec succès.";
-        } else {
-            $_SESSION['erreur'] = "Erreur lors de la modification de la recette.";
+        // // Gérer le résultat
+        // if ($resultat) {
+        //     $_SESSION['message'] = "La recette a été modifiée avec succès.";
+        // } else {
+        //     $_SESSION['erreur'] = "Erreur lors de la modification de la recette.";
             
-            // En cas d'échec, supprimer la nouvelle image si elle a été uploadée
-            if ($imagePath && file_exists($imagePath) && $imagePath !== $ancienneRecette->getUneImage()) {
-                unlink($imagePath);
-                error_log("Nouvelle image supprimée après échec de la modification");
-            }
-        }
+        //     // En cas d'échec, supprimer la nouvelle image si elle a été uploadée
+        //     if ($imagePath && file_exists($imagePath) && $imagePath !== $ancienneRecette->getUneImage()) {
+        //         unlink($imagePath);
+        //         error_log("Nouvelle image supprimée après échec de la modification");
+        //     }
+        // }
         
         // Rediriger vers la page des recettes
         header('Location: index.php?controleur=recettes&action=consultationRecettes');

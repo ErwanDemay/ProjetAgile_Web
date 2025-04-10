@@ -274,6 +274,43 @@ class RecetteDAO extends Base {
             return [];
         }
     }
+
+    /**
+     * Récupère les N dernières recettes ajoutées
+     * @param int $limit - Nombre de recettes à récupérer
+     * @return array - Tableau d'objets Recette
+     */
+    public function getLastRecettes($limit = 3) {
+        try {
+            error_log("Tentative de récupération des " . $limit . " dernières recettes");
+            
+            // Préparation de la requête de sélection
+            $sql = "SELECT * FROM Recette ORDER BY dateAjout DESC LIMIT ?";
+            
+            $stmt = $this->prepare($sql);
+            $stmt->execute([$limit]);
+            
+            $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $recettes = [];
+            foreach ($resultats as $resultat) {
+                $recette = new Recette(
+                    $resultat['id'],
+                    $resultat['libelle'],
+                    $resultat['description'],
+                    $resultat['uneImage'],
+                    $resultat['dateAjout'],
+                    $resultat['id_Type']
+                );
+                $recettes[] = $recette;
+            }
+            
+            return $recettes;
+        } catch (PDOException $e) {
+            error_log("Erreur lors de la récupération des dernières recettes : " . $e->getMessage());
+            return [];
+        }
+    }
 }
 
 ?>
