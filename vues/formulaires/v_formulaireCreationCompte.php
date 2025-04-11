@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <!-- Préconnecter les domaines nécessaires -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,19 +19,26 @@
 <body>    
     <div class="container">
         <div class="form-container">
-            <h2>Connexion</h2>
+            <h2>Création de compte</h2>
             <?php
             if(isset($_SESSION['message'])) {
                 echo $_SESSION['message'];
                 unset($_SESSION['message']);
             }
             ?>
-            <form action ='index.php?controleur=utilisateurs&action=loginEnCours' method="POST">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Entrez votre mail">
+            <form action='/index.php?controleur=utilisateurs&action=signupEncours' method="POST">
+            <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Entrez l'email" required>
                 <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
-                <button type="submit">Se connecter</button>
+                <input type="password" id="password" name="password" placeholder="Entrez le mot de passe" required>
+                <label for="role">Rôle</label>
+                <select id="role" name="role" required>
+                    <option value="">Sélectionnez un rôle</option>
+                    <option value="user">Utilisateur</option>
+                    <option value="admin">Administrateur</option>
+                </select>
+                <button type="submit">Créer le compte</button>
+                <a href="index.php?controleur=utilisateurs&action=consultation">Déjà un compte ? Connectez-vous</a>
             </form>
         </div>
         <div class="image-container">

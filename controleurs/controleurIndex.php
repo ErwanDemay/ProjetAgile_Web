@@ -16,7 +16,7 @@ switch ($action){
 
     require_once(__DIR__ . "/../vues/v_index.php");
     break;
-
+// Un contrôleur entier pour 3 lignes ? On peut faire d'autres cases pour l'index ?
   }
 
 
