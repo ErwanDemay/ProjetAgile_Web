@@ -28,18 +28,20 @@ switch ($action){
                         } else {
                             $lesRecettes = $recetteDAO->getAllRecettes();
                         }
+                        require_once("./vues/v_recettes.php");
                         
                         // Déterminer quelle vue charger en fonction du rôle de l'utilisateur
-                        if(isset($_SESSION['utilisateurConnecte'])){ 
-                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
-                            if($utilisateurConnecte->getRole() == "admin"){
-                                require_once("./vues/v_recettesGestion.php");
-                            } else {
-                                require_once("./vues/v_recettes.php");
-                            }
-                        } else {
-                            require_once("./vues/v_recettes.php");
-                        }
+                        //if(isset($_SESSION['utilisateurConnecte'])){ 
+                        //    $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                        //    if($utilisateurConnecte->getRole() == "admin"){
+                        //        require_once("./vues/v_recettesGestion.php");
+                        //    } else {
+                        //        require_once("./vues/v_recettes.php");
+                        //    }
+                        //} else {
+                        //    
+                        //}
+                        // Si c'est pour écrire des cochoneries comme ça c'est pas la peine de coder
                         break;
 
     case 'consultationDetailsRecettes':

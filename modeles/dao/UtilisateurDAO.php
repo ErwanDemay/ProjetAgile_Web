@@ -151,5 +151,68 @@ class UtilisateurDAO extends Base {
             return false;
         }
     }
+
+    /**
+     * modifie le mot de passe d'un utilisateur à partir des informations fournies par le formualire v_formulaireChangerMotDePasse.php
+     * @param Utilisateur $unUtilisateur    objet utilisateur contenant les informations nécessaire pour changer le mot de passe au bon utilisateur
+     * @param String $nouveauMotDePasse    nouveau mot de passe qui va remplacer l'ancien
+     * @return $resultatDeLaRequete    retourne une valeur numérique indiquant si le mot de passe a bien été modifié
+     */
+    public function editMotDePasse($unUtilisateur, $ancienMotDePasse, $nouveauMotDePasse){
+      try {
+        // Récupérer les données de l'utilisateur
+        $email = $unUtilisateur->getMail();
+        $role = $unUtilisateur->getRole();
+
+        $ordreSQL = "SELECT motDePasse FROM Utilisateur WHERE mail = :email"; //récupération du hash de mot de passe stocké
+        $reqPrepa = $this->prepare($ordreSQL);
+        $reqPrepa->bindParam(':email', $email);
+        $reqPrepa->execute();
+        $resultatDeLaRequete = $reqPrepa->fetch();
+
+        if ($resultatDeLaRequete) {
+          $motDePasseStocke = $resultatDeLaRequete['motDePasse'];
+
+          // Charger le poivre depuis le fichier .env
+          $poivre = getenv('APP_POIVRE');
+          if (!$poivre) {
+              error_log("Erreur : Poivre non trouvé dans le fichier .env");
+              return false;
+          }
+
+          // Concaténer le mot de passe avec le poivre
+          $motDePasseAvecPoivre = $ancienMotDePasse . $poivre;
+
+          if (password_verify($motDePasseAvecPoivre, $motDePasseStocke)) {
+            // Hasher le mot de passe avec le poivre
+            $nouveauMotDePasseAvecPoivre = $nouveauMotDePasse . $poivre;
+            $motDePasseHashe = password_hash($nouveauMotDePasseAvecPoivre, PASSWORD_DEFAULT);
+
+            // Préparer la requête SQL
+            $ordreSQL = "UPDATE Utilisateur
+                        SET motDePasse = :motDePasse
+                        WHERE mail = :email AND role = :role";
+            
+            $reqPrepa = $this->prepare($ordreSQL);
+
+            // Lier les paramètres
+            $reqPrepa->bindParam(':email', $email);
+            $reqPrepa->bindParam(':motDePasse', $motDePasseHashe);
+            $reqPrepa->bindParam(':role', $role);
+
+            // Exécuter la requête
+            $resultatDeLaRequete = $reqPrepa->execute();
+
+            return $resultatDeLaRequete;
+          }else{
+            echo "L'ancien mot de passe n'est pas le bon.";
+            return false;
+          }
+        }
+      } catch (PDOException $e) {
+          error_log("Erreur lors de la modification du mot de passe : " . $e->getMessage());
+          return false;
+      }
+    }
     
 }

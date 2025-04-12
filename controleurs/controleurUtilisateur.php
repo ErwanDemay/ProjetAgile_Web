@@ -25,6 +25,8 @@ switch ($action){
                             break;
 
     case 'connexion':
+                        // Déconnecte l'utilisateur, c'est ici que redirige le bouton Déconnexion de la page profil
+                        unset($_SESSION['utilisateurConnecte']);
                         require_once("./vues/formulaires/v_formulaireConnexion.php");
                         break;
 
@@ -56,19 +58,49 @@ switch ($action){
                         break;
 
     case 'loginEnCours'        :
-                            $email = $_POST['email'];
-                            $motDePasse = $_POST['password'];
+                        $email = $_POST['email'];
+                        $motDePasse = $_POST['password'];
     
-                            $connectionUtilisateur = $UtilisateurDAO->verifConnection($email, $motDePasse);
-                            if($connectionUtilisateur == false){
-                                echo "<br><br><br><h1 style='color:black;'>Il y a une erreur dans l'adrese email ou le mot de passe</h1>";
-                            }else{
-                                $_SESSION['utilisateurConnecte'] = serialize($connectionUtilisateur);
-                                header("Location: ./index.php?controleur=utilisateurs&action=profil");
-                            }
-                            break;
+                        $connectionUtilisateur = $UtilisateurDAO->verifConnection($email, $motDePasse);
+                        if($connectionUtilisateur == false){
+                            echo "<br><br><br><br><h1 style='color:black;'>Il y a une erreur dans l'adrese email ou le mot de passe</h1>"; // Tout ces br c'est moche il faut du css ici aussi
+                        }else{
+                            $_SESSION['utilisateurConnecte'] = serialize($connectionUtilisateur);
+                            header("Location: ./index.php?controleur=utilisateurs&action=profil");
+                        }
+                        break;
     case 'profil'               :
-                            require_once("./vues/v_profile.php");
-                            break;
+                        require_once("./vues/v_profile.php");
+                        break;
+    case 'changerMotDePasse'    :
+                        if(isset($_SESSION['utilisateurConnecte'])){ 
+                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+
+                            require_once("./vues/formulaires/v_formulaireChangerMotDePasse.php");
+                        
+                            if(isset($_POST['ancienMotDePasse']) && isset($_POST['nouveauMotDePasse'])){
+                                $ancienMotDePasse = $_POST['ancienMotDePasse'];
+                                $nouveauMotDePasse = $_POST['nouveauMotDePasse'];
+
+                                // Vérification de la complexité du nouveau mot de passe
+                                $motDePasseValide = preg_match(
+                                    '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/',
+                                    $nouveauMotDePasse
+                                );
+
+                                if ($motDePasseValide) {
+                                    $modification = $UtilisateurDAO->editMotDePasse($utilisateurConnecte, $ancienMotDePasse, $nouveauMotDePasse);
+                                   
+                                    if($modification){
+                                        echo "Mot de passe mit à jour";
+                                    }
+                                }else{
+                                    echo "Le nouveau mot de passe ne respecte pas les critères de complexité.";
+                                }
+                            }else{
+                                echo "Veuillez remplir tous les champs.";
+                            }
+                        }
+                        break;
 }
 ?>
