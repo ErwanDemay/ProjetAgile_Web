@@ -44,8 +44,9 @@
                 // Afficher les recettes associées
                 if ($recettes) {
                     foreach ($recettes as $recette) {
+                        // C'EST QUOI CA FRERE ARRETEZ DE CODER LES YEUX FERMÉS
                         echo "<div class='recette-item'>" .
-                             "<span>" . htmlspecialchars($recette['libelle']) . "</span>" .
+                             "<span>" . $recette['libelle'] . "</span>" .
                              "<a href='index.php?controleur=sessions&action=supprimerRecetteSession&idRecette=" . $recette['id'] . "&idSession=" . $Session->getId() . "' 
                                  class='delete-recette' 
                                  onclick='return confirm(\"Êtes-vous sûr de vouloir retirer cette recette de la session ?\");'>" .

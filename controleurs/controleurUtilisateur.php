@@ -102,5 +102,47 @@ switch ($action){
                             }
                         }
                         break;
+    case 'gestion'              :
+                        if(isset($_SESSION['utilisateurConnecte'])){ 
+                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                            if($utilisateurConnecte->getRole() == "admin"){
+                                require_once('./vues/v_utilisateurs.php');
+                            }
+                        }
+                        break;
+    case 'updateUtilisateur'    :
+                        if (isset($_SESSION['utilisateurConnecte'])) {
+                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                            if ($utilisateurConnecte->getRole() == "admin") {
+                    
+                                if (isset($_POST['id']) && isset($_POST['mail']) && isset($_POST['motDePasse']) && isset($_POST['role'])) {
+                                    $id = $_POST['id'];
+                                    $mail = $_POST['mail'];
+                                    $motDePasse = $_POST['motDePasse'];
+                                    $role = $_POST['role'];
+                    
+                                    if ($id != null && $mail != null && $motDePasse != null && $role != null) {
+                                        $lUtilisateur = new Utilisateur($id, $mail, $motDePasse, $role);
+                                        $resultat = $UtilisateurDAO->editUtilisateur($lUtilisateur);
+                                    }
+                                    header("Location: ./index.php?controleur=utilisateurs&action=gestion");
+                                } else {
+                                    $id = $_GET['id'];
+                                    $unUtilisateur = $UtilisateurDAO->getUtilisateurById($id);
+                                    require_once('./vues/formulaires/v_formulaireModifUtilisateur.php');
+                                }
+                            }
+                        }
+                        break;
+    case 'deleteUtilisateur'    :
+                        if(isset($_SESSION['utilisateurConnecte'])){ 
+                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                            if($utilisateurConnecte->getRole() == "admin"){
+                                $id = $_GET['id'];
+                                $UtilisateurDAO->deleteUtilisateur($id);
+                            }
+                        }
+                        header("Location: ./index.php?controleur=utilisateurs&action=gestion");
+                        break;
 }
 ?>

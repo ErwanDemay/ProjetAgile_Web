@@ -214,5 +214,114 @@ class UtilisateurDAO extends Base {
           return false;
       }
     }
-    
+
+    /**
+     * récupère tous les utilisateurs pour les retourner dans une collection
+     * @param
+     * @return $lesObjUtilisateurs    collection d'objets utilisateurs contenant tous les utilisateurs
+     */
+    public function getLesUtilisateurs(){
+      $ordreSQL = "SELECT * FROM Utilisateur ORDER BY mail DESC;";
+      
+      $reqPrepa = $this->prepare($ordreSQL);
+      $reqPrepa->execute();
+
+      $tableauUtilisateurs = $reqPrepa->fetchAll();
+      $lesObjUtilisateurs = array();
+
+      foreach($tableauUtilisateurs as $uneLigneUnUtilisateur){
+          $unUtilisateur = new Utilisateur(
+              $uneLigneUnUtilisateur['id'],
+              $uneLigneUnUtilisateur['mail'],
+              $uneLigneUnUtilisateur['motDePasse'],
+              $uneLigneUnUtilisateur['role']
+          );
+          $lesObjUtilisateurs[] = $unUtilisateur;
+      }
+  
+      return $lesObjUtilisateurs;
+    }
+
+     /**
+     * Supprime du SGBD l'utilisateur dont l'id correspond à celui fourni en paramètre
+     * @param $id    identifiant, sensé correspondre à un utilisateur
+     * @return $resultatDeLaRequete    valeur numérique indiquant le nombre de lignes supprimées (0 ou 1)
+     */
+    public function deleteUtilisateur($id){
+      $ordreSQL = "DELETE FROM Utilisateur WHERE id = :id";
+      
+      $reqPrepa = $this->prepare($ordreSQL);
+      $reqPrepa->bindParam(':id', $id, PDO::PARAM_INT);
+      $resultatDeLaRequete = $reqPrepa->execute();
+  
+      return $resultatDeLaRequete;
+    }
+
+    /**
+     * Fonction qui modifie un utilisateur et le trouvant par son id et appliquant les informations fournies dans le paramètre utilisateur
+     * @param $utilisateur    objet de la classe utilisateur contenant les nouvelles informations, avec l'ancien id
+     * @return $resultatDeLaRequete    valeur numérique indiquant le nombre de lignes modifiées (0 ou 1)
+     */
+    public function editUtilisateur($utilisateur){
+      $poivre = getenv('APP_POIVRE');
+          if (!$poivre) {
+              error_log("Erreur : Poivre non trouvé dans le fichier .env");
+              return false;
+          }
+          
+      $ordreSQL = "UPDATE Utilisateur
+                   SET mail = :mail,
+                       motDePasse = :motDePasse, 
+                       role = :role
+                   WHERE id = :id";
+      
+      $reqPrepa = $this->prepare($ordreSQL);
+      
+      $id = $utilisateur->getId();
+      $mail = $utilisateur->getMail();
+      $motDePasse = $utilisateur->getMotDePasse();
+      $role = $utilisateur->getRole();
+
+      $motDePasseAvecPoivre = $motDePasse . $poivre;
+      $motDePasseHashe = password_hash($motDePasseAvecPoivre, PASSWORD_DEFAULT);
+
+      $reqPrepa->bindParam(':id', $id);
+      $reqPrepa->bindParam(':mail', $mail);
+      $reqPrepa->bindParam(':motDePasse', $motDePasseHashe);
+      $reqPrepa->bindParam(':role', $role);
+
+      $resultatDeLaRequete = $reqPrepa->execute();
+      
+      return $resultatDeLaRequete;
+  }
+
+  /**
+     * Récupère les informations d'un seul utilisateur
+     * @param $id    identifiant de l'utilisateur' à récupérer
+     * @return $unObjUtilisateur    objet utilisateur contenant toutes les informations de l'utilisateur correspondant à l'id fourni en paramètre
+     */
+    public function getUtilisateurById($id){
+      $ordreSQL = "SELECT * FROM Utilisateur WHERE id = :id;";
+
+      $reqPrepa = $this->prepare($ordreSQL);
+
+      $reqPrepa->bindValue(':id', $id);
+
+      $reqPrepa->execute();
+      
+      $unUtilisateur = $reqPrepa->fetch();
+
+      if ($unUtilisateur) {
+          $unObjUtilisateur = new Utilisateur(
+              $unUtilisateur["id"],
+              $unUtilisateur["mail"],
+              null,
+              $unUtilisateur["role"]
+          );
+          return $unObjUtilisateur;
+      } else {
+          return null; 
+      }
+  }
+
 }
