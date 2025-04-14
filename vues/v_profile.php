@@ -19,3 +19,4 @@ echo "adresse mail : ".$utilisateurConnecte->getMail();
 <a href="index.php?controleur=utilisateurs&action=connexion"><button>Déconnexion</button></a>
     </div>
 </body>
+</html>

@@ -63,7 +63,18 @@ switch ($action){
     
                         $connectionUtilisateur = $UtilisateurDAO->verifConnection($email, $motDePasse);
                         if($connectionUtilisateur == false){
-                            echo "<br><br><br><br><h1 style='color:black;'>Il y a une erreur dans l'adrese email ou le mot de passe</h1>"; // Tout ces br c'est moche il faut du css ici aussi
+                            echo "<h1 style='display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            margin: 0;
+                            font-size: 24px;
+                            text-align: center;
+                            color: red;
+                            border: 1px solid #f5c6cb;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)'>Il y a une erreur dans l'adrese email ou le mot de passe</h1>"; // Tout ces br c'est moche il faut du css ici aussi
                         }else{
                             $_SESSION['utilisateurConnecte'] = serialize($connectionUtilisateur);
                             header("Location: ./index.php?controleur=utilisateurs&action=profil");
