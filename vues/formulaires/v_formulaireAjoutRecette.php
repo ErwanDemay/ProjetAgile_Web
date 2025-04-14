@@ -10,7 +10,7 @@
                 <input type="text" id="libelle" name="libelle" placeholder="Nom de la recette" required>
             </div>
             <div class="input-field">
-                <textarea id="description" name="description" placeholder="Description de la recette" required></textarea>
+                <input id="description" name="description" placeholder="Description de la recette" required></input>
             </div>
             <div class="input-field">
                 <select id="idType" name="idType" required>

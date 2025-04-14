@@ -1,0 +1,6 @@
+.logbut{
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    margin-top: 500px;
+}

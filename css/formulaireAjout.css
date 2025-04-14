@@ -101,6 +101,10 @@ body {
 .buttons .create-btn {
   background-color: var(--button-primary);
   color: var(--text-light);
+  width: 100px;
+  border-radius: 0.75vw; 
+  border: 0.1125vw solid #ccc; /* Était 0.075vw */
+font-size: 1.05vw;
 }
 
 .buttons .cancel-btn:hover {
