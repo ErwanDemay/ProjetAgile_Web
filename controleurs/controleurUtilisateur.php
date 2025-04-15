@@ -125,7 +125,7 @@ switch ($action){
                         if (isset($_SESSION['utilisateurConnecte'])) {
                             $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
                             if ($utilisateurConnecte->getRole() == "admin") {
-                    
+
                                 if (isset($_POST['id']) && isset($_POST['mail']) && isset($_POST['motDePasse']) && isset($_POST['role'])) {
                                     $id = $_POST['id'];
                                     $mail = $_POST['mail'];

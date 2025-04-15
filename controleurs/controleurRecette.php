@@ -75,12 +75,12 @@ switch ($action){
 
     case 'addRecette':
                         // Vérification des droits
-                        // if(!isset($_SESSION['utilisateurConnecte']) || 
-                        //   unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
-                        //     // Rediriger l'utilisateur non-admin
-                        //     header('Location: index.php?action=consultationRecettes');
-                        //     exit();
-                        // }
+                        if(!isset($_SESSION['utilisateurConnecte']) || 
+                          unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+                            // Rediriger l'utilisateur non-admin
+                            header('Location: index.php?action=consultationRecettes');
+                            exit();
+                        }
                         
                         // Affichage du formulaire d'ajout
                         require_once("./vues/formulaires/v_formulaireAjoutRecette.php");
@@ -183,6 +183,14 @@ switch ($action){
         exit();
 
     case 'deleteRecette':
+        // Vérification des droits
+        if(!isset($_SESSION['utilisateurConnecte']) || 
+        unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+            // Rediriger l'utilisateur non-admin
+            header('Location: index.php?action=consultationRecettes');
+            exit();
+        }
+
         // Vérifier si l'ID de la recette est fourni
         if (!isset($_GET['id']) || empty($_GET['id'])) {
             $_SESSION['erreur'] = "ID de recette non spécifié.";
@@ -223,6 +231,15 @@ switch ($action){
         exit();
         
     case 'editRecette':
+
+        // Vérification des droits
+        if(!isset($_SESSION['utilisateurConnecte']) || 
+            unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+            // Rediriger l'utilisateur non-admin
+            header('Location: index.php?action=consultationRecettes');
+            exit();
+        }      
+
         // Vérifier si l'ID de la recette est fourni
         if (!isset($_GET['id']) || empty($_GET['id'])) {
             $_SESSION['erreur'] = "ID de recette non spécifié.";
@@ -363,6 +380,15 @@ switch ($action){
         exit();
 
     case 'ajoutRecette':
+
+        // Vérification des droits
+        if(!isset($_SESSION['utilisateurConnecte']) || 
+            unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+            // Rediriger l'utilisateur non-admin
+            header('Location: index.php?action=consultationRecettes');
+            exit();
+        }      
+        
         // Récupération des données du formulaire
         $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);
         $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
@@ -461,7 +487,5 @@ switch ($action){
         exit();
 
     }
-
-
 
 ?>

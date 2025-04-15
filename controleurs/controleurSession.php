@@ -16,51 +16,59 @@ switch ($action){
       break;
 
     case 'addSession'    :
+    // Vérification des droits
+    if(!isset($_SESSION['utilisateurConnecte']) || 
+    unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+    // Rediriger l'utilisateur non-admin
+    header('Location: index.php?action=consultationSessions');
+    exit();
+    }      
+
       require_once("./vues/formulaires/v_formulaireAjoutSession.php");
       break;
 
-      case 'addRecetteASession':
-        $sessionDAO = new SessionDAO();
-        $recetteDAO = new RecetteDAO();
-        $proposerDAO = new ProposerDAO();
+    case 'addRecetteASession':
+    $sessionDAO = new SessionDAO();
+    $recetteDAO = new RecetteDAO();
+    $proposerDAO = new ProposerDAO();
 
-        // Si le formulaire a été soumis
-        if (isset($_POST['recette_id']) && isset($_POST['session_id'])) {
-            $idRecette = filter_var($_POST['recette_id'], FILTER_SANITIZE_NUMBER_INT);
-            $idSession = filter_var($_POST['session_id'], FILTER_SANITIZE_NUMBER_INT);
+    // Si le formulaire a été soumis
+    if (isset($_POST['recette_id']) && isset($_POST['session_id'])) {
+        $idRecette = filter_var($_POST['recette_id'], FILTER_SANITIZE_NUMBER_INT);
+        $idSession = filter_var($_POST['session_id'], FILTER_SANITIZE_NUMBER_INT);
 
-            // Ajoute la recette à la session
-            if ($proposerDAO->ajouterRecetteASession($idRecette, $idSession)) {
-                $_SESSION['message'] = "La recette a été ajoutée à la session avec succès.";
-            } else {
-                $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette à la session.";
-            }
-
-            // Redirige vers la liste des sessions
-            header("Location: index.php?controleur=sessions");
-            exit();
-        }
-
-        // Si on arrive ici, c'est pour afficher le formulaire
-        if (isset($_GET['id'])) {
-            $idSession = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-            $session = $sessionDAO->getUneSession($idSession);
-
-            if ($session) {
-                $recettesDisponibles = $recetteDAO->getAllRecettes();
-                require_once("./vues/formulaires/v_formulaireAjoutRecetteASession.php");
-            } else {
-                $_SESSION['erreur'] = "Session non trouvée.";
-                header("Location: index.php?controleur=sessions");
-                exit();
-            }
+        // Ajoute la recette à la session
+        if ($proposerDAO->ajouterRecetteASession($idRecette, $idSession)) {
+            $_SESSION['message'] = "La recette a été ajoutée à la session avec succès.";
         } else {
-            $_SESSION['erreur'] = "ID de session manquant.";
+            $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette à la session.";
+        }
+
+        // Redirige vers la liste des sessions
+        header("Location: index.php?controleur=sessions");
+        exit();
+    }
+
+    // Si on arrive ici, c'est pour afficher le formulaire
+    if (isset($_GET['id'])) {
+        $idSession = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $session = $sessionDAO->getUneSession($idSession);
+
+        if ($session) {
+            $recettesDisponibles = $recetteDAO->getAllRecettes();
+            require_once("./vues/formulaires/v_formulaireAjoutRecetteASession.php");
+        } else {
+            $_SESSION['erreur'] = "Session non trouvée.";
             header("Location: index.php?controleur=sessions");
             exit();
         }
-        break;    
-    
+    } else {
+        $_SESSION['erreur'] = "ID de session manquant.";
+        header("Location: index.php?controleur=sessions");
+        exit();
+    }
+    break;    
+
     case 'sessionAdded':
       $sessionDAO = new SessionDAO();
     
@@ -134,6 +142,15 @@ switch ($action){
         exit();
 
     case 'deleteSession':
+
+    // Vérification des droits
+    if(!isset($_SESSION['utilisateurConnecte']) || 
+    unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+    // Rediriger l'utilisateur non-admin
+    header('Location: index.php?action=consultationSessions');
+    exit();
+    } 
+
       // Vérifier si l'ID de la session est fourni
       if (!isset($_GET['id']) || empty($_GET['id'])) {
           $_SESSION['erreur'] = "ID de session non spécifié.";
@@ -164,6 +181,15 @@ switch ($action){
       exit();
 
     case 'supprimerRecetteSession':
+
+            // Vérification des droits
+        if(!isset($_SESSION['utilisateurConnecte']) || 
+        unserialize($_SESSION['utilisateurConnecte'])->getRole() != "admin") {
+        // Rediriger l'utilisateur non-admin
+        header('Location: index.php?action=consultationSessions');
+        exit();
+        } 
+        
         if (isset($_GET['idRecette']) && isset($_GET['idSession'])) {
             $idRecette = filter_var($_GET['idRecette'], FILTER_SANITIZE_NUMBER_INT);
             $idSession = filter_var($_GET['idSession'], FILTER_SANITIZE_NUMBER_INT);
