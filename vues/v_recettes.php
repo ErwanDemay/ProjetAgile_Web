@@ -62,24 +62,38 @@ if (isset($_SESSION['message'])): ?>
             </div>
         </div>
     </section>
-    <div class="header-btn-container">
-        <a href="index.php?controleur=recettes&action=addRecette" class="add-recipe-btn">Ajouter une recette</a>
-    </div>
+    <?php
+    if (isset($_SESSION['utilisateurConnecte'])) {
+        $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+        if ($utilisateurConnecte->getRole() === "admin") {
+            echo '<div class="header-btn-container">
+                    <a href="index.php?controleur=recettes&action=addRecette" class="add-recipe-btn">Ajouter une recette</a>
+                </div>';
+        }
+    }
+    ?>
     <main>
         <section class="card-container">
-            <?php foreach ($lesRecettes as $recette): ?>
+        <?php foreach ($lesRecettes as $recette): ?>
             <div class="card">
                 <div class="card-header"><?php echo $recette->getLibelle(); ?></div>
                 <div class="card-body">
-                <img src="<?php echo $recette->getUneImage(); ?>" alt="<?php echo $recette->getLibelle(); ?>" class="card-image">
+                    <img src="<?php echo $recette->getUneImage(); ?>" alt="<?php echo $recette->getLibelle(); ?>" class="card-image">
                 </div>
                 <div class="button-container">
-                <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes&id=<?php echo $recette->getId(); ?>" class="card-button">Voir plus</a>
-                <a href="./index.php?controleur=recettes&action=editRecette&id=<?php echo $recette->getId(); ?>" class="card-button">Modifier</a>
-                <a href="./index.php?controleur=recettes&action=deleteRecette&id=<?php echo $recette->getId(); ?>" class="card-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?')">Supprimer</a>
+                    <a href="./index.php?controleur=recettes&action=consultationDetailsRecettes&id=<?php echo $recette->getId(); ?>" class="card-button">Voir plus</a>
+
+                    <?php
+                    if (isset($_SESSION['utilisateurConnecte'])) {
+                        if ($utilisateurConnecte->getRole() === "admin") {
+                            echo '<a href="./index.php?controleur=recettes&action=editRecette&id=' . $recette->getId() . '" class="card-button">Modifier</a>';
+                            echo '<a href="./index.php?controleur=recettes&action=deleteRecette&id=' . $recette->getId() . '" class="card-button" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette recette ?\')">Supprimer</a>';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </section>
     </main>
 </body>
