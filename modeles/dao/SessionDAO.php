@@ -293,5 +293,32 @@ public function getLesRecettesDeLaSession($idSession) {
         return null; // Retourne null si aucune recette n'est trouvée
     }
 }
+
+public function getSessionsByRecette($idRecette) {
+    $sql = "SELECT Session.* 
+            FROM Session
+            INNER JOIN Proposer ON Session.id = Proposer.id_Session
+            WHERE Proposer.id = :idRecette";
+    
+    $stmt = $this->prepare($sql);
+    $stmt->bindValue(':idRecette', $idRecette, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $sessions = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $sessions[] = new Session(
+            $row['id'],
+            $row['nomSession'],
+            $row['dateSession'],
+            $row['heureDebut'],
+            $row['heureFin'],
+            $row['prix'],
+            $row['nbPlaces']
+        );
+    }
+
+    return $sessions;
+}
+
 }
 ?>

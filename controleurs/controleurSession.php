@@ -29,12 +29,12 @@ switch ($action){
             $idRecette = filter_var($_POST['recette_id'], FILTER_SANITIZE_NUMBER_INT);
             $idSession = filter_var($_POST['session_id'], FILTER_SANITIZE_NUMBER_INT);
 
-            // // Ajoute la recette à la session
-            // if ($proposerDAO->ajouterRecetteASession($idRecette, $idSession)) {
-            //     $_SESSION['message'] = "La recette a été ajoutée à la session avec succès.";
-            // } else {
-            //     $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette à la session.";
-            // }
+            // Ajoute la recette à la session
+            if ($proposerDAO->ajouterRecetteASession($idRecette, $idSession)) {
+                $_SESSION['message'] = "La recette a été ajoutée à la session avec succès.";
+            } else {
+                $_SESSION['erreur'] = "Erreur lors de l'ajout de la recette à la session.";
+            }
 
             // Redirige vers la liste des sessions
             header("Location: index.php?controleur=sessions");
