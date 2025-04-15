@@ -56,6 +56,9 @@ class UtilisateurDAO extends Base {
       }
     }
 
+
+
+    
     /**
  * La fonction vérifie si un email donné existe déjà dans la table "Utilisateur" de la base de données.
  * 
