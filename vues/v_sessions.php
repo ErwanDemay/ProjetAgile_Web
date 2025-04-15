@@ -60,7 +60,7 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                 if ($recettes) {
                     foreach ($recettes as $recette) {
                         echo "<div class='recette-item'>
-                                <span>" . htmlspecialchars($recette['libelle']) . "</span>";
+                                <span>" . $recette['libelle'] . "</span>";
                         
                         if (isset($_SESSION['utilisateurConnecte'])) {
                             if ($utilisateurConnecte->getRole() === "admin") {
