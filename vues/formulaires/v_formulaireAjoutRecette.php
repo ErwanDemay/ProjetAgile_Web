@@ -1,3 +1,9 @@
+<?php 
+
+if (isset($_SESSION['utilisateurConnecte'])) {
+    $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+    if ($utilisateurConnecte->getRole() === "admin") {
+?>
 <head>
 <link rel="stylesheet" href="../../css/formulaireAjout.css">
 </head>
@@ -24,10 +30,13 @@
                 <input type="file" id="image" name="image" accept="image/*" required>
             </div>
             <div class="buttons">
-                <a href="index.php?action=consultationRecettes" class="cancel-btn">Annuler</a>
+                <a href="index.php?controleur=recettes&action=consultationRecettes" class="cancel-btn">Annuler</a>
                 <button type="submit" class="create-btn">Créer</button>
             </div>
         </form>
     </div>
 </body>
-
+<?php 
+    }
+}
+?>

@@ -1,3 +1,7 @@
 .h1error{
     color: blue;
 }
+
+body {
+    margin-top: 5%;
+}

@@ -1,3 +1,9 @@
+<?php 
+
+if (isset($_SESSION['utilisateurConnecte'])) {
+    $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+    if ($utilisateurConnecte->getRole() === "admin") {
+?>
 <head>
 <link rel="stylesheet" href="../../css/formulaireAjout.css">
 </head>
@@ -22,4 +28,7 @@
         </form>
     </div>
     </body>
-
+    <?php 
+    }
+}
+?>
