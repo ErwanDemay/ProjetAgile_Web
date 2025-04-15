@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../modeles/Recette.php");
 require_once(__DIR__ . "/../modeles/DAO/RecetteDAO.php");
+require_once(__DIR__ . "/../modeles/DAO/SessionDAO.php");
 
 // Ajout de logs pour le débogage
 error_log("Méthode: " . $_SERVER['REQUEST_METHOD']);
@@ -249,6 +250,27 @@ switch ($action){
         require_once("./vues/formulaires/v_formulaireModificationRecette.php");
         break;
         
+        case 'consultationSessionAssociee':
+            if (isset($_GET['idRecette']) && !empty($_GET['idRecette'])) {
+                $idRecette = filter_var($_GET['idRecette'], FILTER_SANITIZE_NUMBER_INT);
+                
+                $sessionDAO = new SessionDAO();
+                $recetteDAO = new RecetteDAO();
+        
+                $laRecette = $recetteDAO->getRecetteById($idRecette); // Pour afficher le titre par exemple
+        
+                if ($laRecette) {
+                    $lesSessionsAssociees = $sessionDAO->getSessionsByRecette($idRecette);
+        
+                    require_once("./vues/v_sessionsAssocieesARecette.php");
+                } else {
+                    // Recette introuvable
+                    $messageErreur = "Recette introuvable.";
+                    header('Location: index.php?controleur=recettes&action=consultationRecettes');
+                }
+            }
+            break;
+            
     case 'recetteModified':
         // Vérifier si l'ID de la recette est fourni
         if (!isset($_POST['id']) || empty($_POST['id'])) {
@@ -437,6 +459,7 @@ switch ($action){
         // Rediriger vers la page des recettes
         header('Location: index.php?controleur=recettes&action=consultationRecettes');
         exit();
+
     }
 
 

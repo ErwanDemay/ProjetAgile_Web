@@ -14,14 +14,13 @@
         <label for="recette_id">Sélectionner une recette :</label>
         <select name="recette_id" id="recette_id" required>
             <?php foreach ($recettesDisponibles as $recette) : ?>
-                <option value="<?php echo $recette->getId(); ?>"><?php echo htmlspecialchars($recette->getLibelle()); ?></option>
+                <option value="<?php echo $recette->getId(); ?>"><?php echo $recette->getLibelle(); ?></option>
             <?php endforeach; ?>
         </select>
     </div>
     <div class="buttons">
+        <a href="index.php?controleur=sessions" class="cancel-btn">Annuler</a>
         <button type="submit" class="create-btn">Ajouter la recette</button>
     </div>
-    </form>
-        <a href="index.php?controleur=sessions">Retour aux sessions</a>
-    </div>
+</div>
 </body>
