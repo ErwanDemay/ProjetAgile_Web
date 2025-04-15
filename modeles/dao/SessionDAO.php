@@ -93,6 +93,34 @@ public function getNbPlacesRestantes($Session) {
     }
 }
 
+/**
+ * La fonction "ajoutSession" insère un nouvel enregistrement de session dans une table de base de données avec
+ * les détails spécifiés de la session.
+ * 
+ * @param nomSession Le paramètre `nomSession` représente le nom ou le titre de la session que vous
+ * souhaitez ajouter à la base de données. Il peut s'agir d'un nom descriptif qui identifie la session pour
+ * les utilisateurs ou les participants. Par exemple, "Introduction à la programmation" ou "Cours de Yoga".
+ * @param dateSession Le paramètre `dateSession` représente la date de la session au format
+ * `YYYY-MM-DD`, où :
+ * @param heureDebut Le paramètre "heureDebut" représente l'heure de début de la session au format
+ * HH:MM:SS (heures:minutes:secondes). Par exemple, si une session commence à 9h30, la valeur de
+ * "heureDebut" serait '09:30:00'.
+ * @param heureFin Le paramètre "heureFin" représente l'heure de fin de la session au format
+ * HH:MM:SS (heures:minutes:secondes). Ce paramètre est utilisé dans la fonction pour spécifier l'heure de fin
+ * de la session.
+ * @param prix Le paramètre "prix" dans la fonction "ajoutSession" représente le prix de la session
+ * ajoutée. Il s'agit d'une valeur numérique qui indique le coût ou le prix associé à la participation
+ * à la session. Cette valeur est insérée dans la table de base de données avec les autres détails de la session tels que
+ * le nom, la date, l'heure, etc.
+ * @param nbPlaces Le paramètre `nbPlaces` dans la fonction `ajoutSession` représente le nombre de
+ * places disponibles pour la session ajoutée. Il est utilisé pour spécifier le nombre maximal de
+ * participants pouvant assister à la session. Cette valeur est généralement un entier représentant
+ * la capacité de la session.
+ * 
+ * @return La fonction `ajoutSession` retourne le résultat de l'exécution de la requête SQL, qui
+ * est une valeur booléenne indiquant si l'insertion a été réussie ou non. Si l'insertion a
+ * réussi, elle retourne `true`, sinon elle retourne `false`.
+ */
 public function ajoutSession($nomSession, $dateSession, $heureDebut, $heureFin, $prix, $nbPlaces) {
     try {
         // Préparation de la requête d'insertion
@@ -120,6 +148,18 @@ public function ajoutSession($nomSession, $dateSession, $heureDebut, $heureFin, 
     }
 }
 
+/**
+ * La fonction `supprimerSession` supprime une session d'une table de base de données en fonction de l'ID fourni et
+ * retourne un booléen indiquant le succès de l'opération.
+ * 
+ * @param id Le fragment de code que vous avez fourni est une fonction PHP qui est conçue pour supprimer une session d'une
+ * table de base de données en fonction de l'ID de session fourni. La fonction prend l'ID de la session en paramètre
+ * et tente de supprimer l'enregistrement de session correspondant de la table "Session".
+ * 
+ * @return La fonction `supprimerSession` retourne le résultat de l'exécution de la requête de suppression.
+ * Si la suppression est réussie, elle retourne `true`, sinon elle intercepte toute `PDOException`
+ * qui survient pendant le processus, enregistre le message d'erreur et retourne `false`.
+ */
 public function supprimerSession($id) {
     try {
         // Préparation de la requête de suppression
@@ -139,6 +179,20 @@ public function supprimerSession($id) {
     }
 }
 
+/**
+ * La fonction `getUneSession` récupère une session de la base de données en fonction de l'ID fourni et
+ * la retourne sous forme d'un objet Session, en gérant les éventuelles erreurs.
+ * 
+ * @param id La fonction `getUneSession` est une méthode PHP qui récupère une session d'une base de données
+ * en fonction de l'ID fourni. Elle utilise une requête préparée pour interroger la base de données et récupérer
+ * le résultat sous forme de tableau associatif. Si une session est trouvée, elle crée un nouvel objet `Session` avec les
+ * données récupérées.
+ * 
+ * @return La fonction `getUneSession` retourne une instance de la classe `Session` avec les données
+ * récupérées de la base de données si un résultat est trouvé en fonction de l'ID fourni. Si aucun résultat n'est trouvé,
+ * elle retourne `null`. En cas d'exception pendant l'opération sur la base de données, elle intercepte la
+ * `PDOException`, enregistre un message d'erreur, et retourne également `null`.
+ */
 public function getUneSession($id) {
     try {
         $sql = "SELECT * FROM Session WHERE id = ?";
@@ -166,6 +220,17 @@ public function getUneSession($id) {
     }
 }
 
+/**
+ * La fonction `updateSession` met à jour un enregistrement de session dans une table de base de données en utilisant l'objet session fourni.
+ * 
+ * @param laSession La fonction `updateSession` que vous avez fournie est responsable de la mise à jour d'une session dans
+ * une base de données. Elle prend un objet `laSession` comme paramètre, qui semble représenter une session avec
+ * des propriétés comme `nomSession`, `dateSession`, `heureDebut`, `heureFin`, `prix`, etc.
+ * 
+ * @return La fonction `updateSession` retourne le résultat de l'exécution de la requête SQL de mise à jour.
+ * Ce résultat indique si l'opération de mise à jour a réussi ou non. Si la mise à jour est réussie, elle retourne `true`.
+ * En cas d'erreur pendant le processus de mise à jour, elle intercepte l'exception, enregistre un message d'erreur et retourne `false`.
+ */
 public function updateSession($laSession) {
     try {
         $sql = "UPDATE Session 
@@ -190,6 +255,19 @@ public function updateSession($laSession) {
         return false;
     }
 }
+
+/**
+ * Cette fonction PHP récupère les recettes associées à un ID de session spécifique à partir d'une base de données.
+ * 
+ * @param idSession Le paramètre `idSession` représente l'ID de la session pour laquelle vous souhaitez
+ * récupérer les recettes associées. La fonction `getLesRecettesDeLaSession` prend cet ID de session en entrée,
+ * interroge la base de données pour récupérer les recettes associées à cette session, et retourne les résultats
+ * sous forme d'un tableau de données de recettes si des recettes sont trouvées.
+ * 
+ * @return La fonction `getLesRecettesDeLaSession` retourne un tableau de tableaux associatifs contenant
+ * les détails des recettes associées à une session spécifique. Si des recettes sont trouvées, la fonction
+ * retourne le tableau des recettes. Si aucune recette n'est trouvée, elle retourne `null`.
+ */
 
 public function getLesRecettesDeLaSession($idSession) {
     // Préparer la requête SQL pour récupérer les recettes associées à la session

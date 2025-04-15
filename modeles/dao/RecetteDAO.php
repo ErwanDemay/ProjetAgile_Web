@@ -49,7 +49,18 @@ class RecetteDAO extends Base {
             return false;
         }
     }
+    
 
+
+  /**
+ * La fonction getAllRecettes récupère toutes les recettes d'une table de base de données, triées par date d'ajout,
+ * et les retourne sous forme d'un tableau d'objets Recette.
+ * 
+ * @return Un tableau d'objets `Recette` est retourné par la fonction `getAllRecettes`. Chaque
+ * objet `Recette` représente une recette avec des propriétés telles que id, libelle, description, uneImage,
+ * dateAjout, et id_Type. Si une erreur survient pendant la requête à la base de données, un tableau vide est
+ * retourné.
+ */
     public function getAllRecettes() {
         try {
             $sql = "SELECT * FROM Recette ORDER BY dateAjout DESC";

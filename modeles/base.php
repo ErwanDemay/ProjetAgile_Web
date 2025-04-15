@@ -27,6 +27,13 @@ class Base {
         }
    }
 
+  /**
+ * La fonction `setConnexionBase` établit une connexion à une base de données MySQL en utilisant des variables
+ * d'environnement pour l'hôte, le nom de la base de données, l'utilisateur et le mot de passe.
+ * 
+ * @return La fonction `setConnexionBase()` retourne une valeur booléenne `true` si la connexion à la base de données
+ * est établie avec succès.
+ */
     protected function setConnexionBase() {         
         try {
             $host = getenv('DB_HOST');

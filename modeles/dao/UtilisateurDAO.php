@@ -56,6 +56,18 @@ class UtilisateurDAO extends Base {
       }
     }
 
+    /**
+ * La fonction vérifie si un email donné existe déjà dans la table "Utilisateur" de la base de données.
+ * 
+ * @param mail La fonction `existeDeja` que vous avez fournie est une fonction PHP qui vérifie si une adresse
+ * email donnée existe déjà dans la table `Utilisateur` d'une base de données. Elle exécute une requête SQL
+ * pour compter le nombre de lignes où l'email correspond à l'adresse email fournie.
+ * 
+ * @return La fonction `existeDeja` retourne le nombre de lignes dans la table `Utilisateur`
+ * où la colonne `mail` correspond au paramètre d'entrée `mail`. La fonction exécute une requête SQL
+ * pour compter les occurrences de l'adresse email fournie dans la table et retourne le résultat sous forme
+ * d'un entier.
+ */
     public function existeDeja($mail){
       $ordreSQL = "SELECT COUNT(mail) AS existeDeja FROM Utilisateur WHERE mail = :mail";
 
