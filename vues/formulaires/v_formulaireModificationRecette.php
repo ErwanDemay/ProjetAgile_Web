@@ -12,7 +12,7 @@
                 <input type="text" id="libelle" name="libelle" placeholder="Nom de la recette" value="<?php echo $laRecette->getLibelle(); ?>" required>
             </div>
             <div class="input-field">
-                <textarea id="description" name="description" placeholder="Description de la recette" required><?php echo $laRecette->getDescription(); ?></textarea>
+                <input id="description" name="description" placeholder="Description de la recette" required><?php echo $laRecette->getDescription(); ?></input>
             </div>
             <div class="input-field">
                 <select id="idType" name="idType" required>
