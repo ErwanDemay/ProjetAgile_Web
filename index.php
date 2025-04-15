@@ -28,7 +28,6 @@ require_once("./modeles/DAO/UtilisateurDAO.php");
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/globals.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <script src="js/navbar.js" defer></script>
 </head>
 <body>
   <header>
