@@ -37,7 +37,7 @@
                 echo "Type : " . $type;
                 ?>
             </div>
-            <button class="card-button" onclick="window.location.href='./index.php?controleur=recettes&action=consultationSessionAssociee&idRecette=<?= $laRecette->getId() ?>'">Voir les sessions associées</button>
+            <button class="card-button" onclick="window.location.href='./index.php?controleur=sessions&action=consultationSessions&filtre=<?= $laRecette->getId() ?>'">Voir les sessions associées</button>
         </div>
         <div class="card-texte">
             <div class="card-texte-header">

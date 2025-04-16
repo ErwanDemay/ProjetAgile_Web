@@ -7,7 +7,9 @@
 </head>
 <body>
 <h1>Prochaines sessions</h1>
-<?php
+<?php if (isset($laRecette)) { ?>
+    <h2>Sessions associées à la recette : <?= htmlspecialchars($laRecette->getLibelle()) ?></h2>
+<?php }
 if (isset($_SESSION['utilisateurConnecte'])) {
     $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
     if ($utilisateurConnecte->getRole() === "admin") {

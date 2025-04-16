@@ -266,27 +266,6 @@ switch ($action){
         // Afficher le formulaire de modification
         require_once("./vues/formulaires/v_formulaireModificationRecette.php");
         break;
-        
-        case 'consultationSessionAssociee':
-            if (isset($_GET['idRecette']) && !empty($_GET['idRecette'])) {
-                $idRecette = filter_var($_GET['idRecette'], FILTER_SANITIZE_NUMBER_INT);
-                
-                $sessionDAO = new SessionDAO();
-                $recetteDAO = new RecetteDAO();
-        
-                $laRecette = $recetteDAO->getRecetteById($idRecette); // Pour afficher le titre par exemple
-        
-                if ($laRecette) {
-                    $lesSessionsAssociees = $sessionDAO->getSessionsByRecette($idRecette);
-        
-                    require_once("./vues/v_sessionsAssocieesARecette.php");
-                } else {
-                    // Recette introuvable
-                    $messageErreur = "Recette introuvable.";
-                    header('Location: index.php?controleur=recettes&action=consultationRecettes');
-                }
-            }
-            break;
             
     case 'recetteModified':
         // Vérifier si l'ID de la recette est fourni

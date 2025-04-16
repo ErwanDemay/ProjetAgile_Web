@@ -9,11 +9,29 @@ if (isset($_GET['action'])){
 }else {
 $action= "consultationSessions";}
 switch ($action){
-    case 'consultationSessions'    :
-      $connexionBD = new SessionDAO();
-      $lesSessions = $connexionBD->getLesSessions();
-      require_once("./vues/v_sessions.php");
-      break;
+    case 'consultationSessions':
+        $connexionBD = new SessionDAO();
+        $recetteDAO = new RecetteDAO();
+    
+        if (isset($_GET['filtre']) && !empty($_GET['filtre'])) {
+            $idRecette = filter_var($_GET['filtre'], FILTER_SANITIZE_NUMBER_INT);
+    
+            $laRecette = $recetteDAO->getRecetteById($idRecette);
+    
+            if ($laRecette) {
+                $lesSessions = $connexionBD->getSessionsByRecette($idRecette);
+            } else {
+                $messageErreur = "Recette introuvable.";
+                header('Location: index.php?controleur=recettes&action=consultationRecettes');
+                exit();
+            }
+        } else {
+            $lesSessions = $connexionBD->getLesSessions();
+        }
+    
+        require_once("./vues/v_sessions.php");
+        break;
+    
 
     case 'addSession'    :
     // Vérification des droits

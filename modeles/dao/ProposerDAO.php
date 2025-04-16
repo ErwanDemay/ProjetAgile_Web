@@ -19,7 +19,7 @@ class ProposerDAO extends Base {
    */
   public function ajouterRecetteASession($idRecette, $idSession) {
     try {
-        $sql = "INSERT INTO Proposer (id, id_Session) VALUES (:idRecette, :idSession)";
+        $sql = "INSERT INTO Proposer (idRecette, idSession) VALUES (:idRecette, :idSession)";
         $stmt = $this->prepare($sql);
         $stmt->bindParam(':idRecette', $idRecette, PDO::PARAM_INT);
         $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
@@ -38,7 +38,7 @@ class ProposerDAO extends Base {
    */
   public function supprimerRecetteDeSession($idRecette, $idSession) {
     try {
-        $sql = "DELETE FROM Proposer WHERE id = :idRecette AND id_Session = :idSession";
+        $sql = "DELETE FROM Proposer WHERE idRecette = :idRecette AND idSession = :idSession";
         $stmt = $this->prepare($sql);
         $stmt->bindParam(':idRecette', $idRecette, PDO::PARAM_INT);
         $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
@@ -58,8 +58,8 @@ class ProposerDAO extends Base {
     try {
         $sql = "SELECT r.* 
                 FROM Recette r 
-                JOIN Proposer p ON r.id = p.id 
-                WHERE p.id_Session = :idSession";
+                JOIN Proposer p ON r.id = p.idRecette 
+                WHERE p.idSession = :idSession";
         
         $stmt = $this->prepare($sql);
         $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
