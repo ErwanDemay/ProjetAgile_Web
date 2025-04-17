@@ -61,24 +61,43 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                 echo "<td><p>";
                 if ($recettes) {
                     foreach ($recettes as $recette) {
-                        echo "<div class='recette-item'>
-                                <span>" . $recette['libelle'] . "</span>";
-                        
-                        if (isset($_SESSION['utilisateurConnecte'])) {
-                            if ($utilisateurConnecte->getRole() === "admin") {
-                                echo "<a href='index.php?controleur=sessions&action=supprimerRecetteSession&idRecette=" . $recette['id'] . "&idSession=" . $Session->getId() . "'
-                                           class='delete-recette'
-                                           onclick='return confirm(\"Êtes-vous sûr de vouloir retirer cette recette de la session ?\");'>
-                                           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='14' height='14' fill='#ff4444'>
-                                               <path d='M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z'/>
-                                           </svg>
-                                      </a>";
-                            }
+                        echo "<div class='recette-item' style='display: flex; justify-content: space-between; align-items: center; padding: 2px 0;'>";
+                
+                        echo "<span>" . ($recette['libelle']) . "</span>";
+                
+                        if (isset($_SESSION['utilisateurConnecte']) && $utilisateurConnecte->getRole() === "admin") {
+                            echo "<div style='display: flex;'>";
+                
+                            // Bouton supprimer
+                            echo "<a href='index.php?controleur=sessions&action=supprimerRecetteSession&idRecette=" . $recette['id'] . "&idSession=" . $Session->getId() . "'
+                                       class='delete-recette'
+                                       onclick='return confirm(\"Êtes-vous sûr de vouloir retirer cette recette de la session ?\");'>
+                                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='14' height='14' fill='#ff4444'>
+                                           <path d='M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 
+                                           296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 
+                                           47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z'/>
+                                       </svg>
+                                  </a>";
+                
+                            // Bouton ajouter
+                            echo "<a href='index.php?controleur=sessions&action=addRecetteASession&id=" . $Session->getId() . "' title='Ajouter une recette'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='14' height='14' fill='#28a745'>
+                                        <path d='M256 80c0-17.7-14.3-32-32-32s-32 
+                                                 14.3-32 32v144H48c-17.7 0-32 
+                                                 14.3-32 32s14.3 32 32 32h144v144c0 
+                                                 17.7 14.3 32 32 32s32-14.3 
+                                                 32-32V288h144c17.7 0 32-14.3 
+                                                 32-32s-14.3-32-32-32H256V80z'/>
+                                    </svg>
+                                </a>";
+                
+                            echo "</div>";
                         }
                 
                         echo "</div>";
                     }
-                } else {
+                }
+                 else {
                     echo "Aucune recette associée.";
                 }                
                 echo "</p></td>";
@@ -98,11 +117,6 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                         echo "<a href='index.php?controleur=sessions&action=deleteSession&id=" . $Session->getId() . "'>
                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='25' height='25'>
                                     <path d='M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z'/>
-                                </svg>
-                              </a>";
-                        echo "<a href='index.php?controleur=sessions&action=addRecetteASession&id=" . $Session->getId() . "'>
-                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='25' height='25'>
-                                    <path d='M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32v144H48c-17.7 0-32 14.3-32 32s14.3 32 32 32h144v144c0 17.7 14.3 32 32 32s32-14.3 32-32V288h144c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z'/>
                                 </svg>
                               </a>";
                         echo "</td>";
