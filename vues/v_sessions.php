@@ -111,8 +111,11 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                         echo "</tr>";  
                     } elseif ($utilisateurConnecte->getRole() === "user") {
                         echo "<td>";
-                        echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "' class='card-button'>Réserver</a>";
-                        echo "</td>";
+                        if ($connexionBD->aReserveSession($utilisateurConnecte->getId(), $Session->getId())) {
+                            echo "<a href='./index.php?controleur=sessions&action=desinscrireUneSession&id=" . $Session->getId() . "' class='card-button red-button'>Se désinscrire</a>";
+                        } else {
+                            echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "' class='card-button'>Réserver</a>";
+                        }                        echo "</td>";
                         echo "</tr>";  
                     }
                 }                              
@@ -145,5 +148,10 @@ if (isset($_SESSION['utilisateurConnecte'])) {
     opacity: 1;
 }
 </style>
+<script>
+    function refreshPage() {
+        location.reload();  // Cette fonction recharge la page actuelle
+    }
+</script>
 </body>
 </html>
