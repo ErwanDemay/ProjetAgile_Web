@@ -33,7 +33,16 @@ if (isset($_SESSION['utilisateurConnecte'])) {
             <th>Prix</th>
             <th>Nb de places</th>
             <th>Nb de places restantes</th>
+            <?php
+            if (isset($_SESSION['utilisateurConnecte'])) {
+                $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                if ($utilisateurConnecte->getRole() === "admin" || $utilisateurConnecte->getRole() === "user") {
+            ?>
             <th>Actions</th>
+            <?php
+                }
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
@@ -100,11 +109,11 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                               </a>";
                         echo "</td>";
                         echo "</tr>";  
-                    } else if ($utilisateurConnecte->getRole() === "user"){ ?>
-                        <td>
-                        <a href="./index.php?controleur=sessions&action=reserverUneSession&id=<?php echo $Session->getId(); ?>" class="card-button">Réserver</a>
-                    </td>
-                    <?php
+                    } elseif ($utilisateurConnecte->getRole() === "user") {
+                        echo "<td>";
+                        echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "' class='card-button'>Réserver</a>";
+                        echo "</td>";
+                        echo "</tr>";  
                     }
                 }                              
             }
