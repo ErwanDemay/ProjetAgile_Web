@@ -320,5 +320,42 @@ public function getSessionsByRecette($idRecette) {
     return $sessions;
 }
 
+public function addReservation($idUtilisateur, $idSession) {
+    try {
+        $sql = "INSERT INTO Reserver (id, id_Utilisateur) VALUES (:idSession, :idUtilisateur)";
+        $stmt = $this->prepare($sql);
+        $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
+        $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        error_log("Erreur lors de l'ajout de réservation : " . $e->getMessage());
+        return false;
+    }
+}
+
+public function aReserveSession($idUtilisateur, $idSession) {
+    $sql = "SELECT COUNT(*) FROM Reserver WHERE id = :idSession AND id_Utilisateur = :idUtilisateur";
+    $stmt = $this->prepare($sql);
+    $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
+    $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchColumn() > 0;
+}
+
+public function supprimerReservation($idUtilisateur, $idSession) {
+    try {
+        $sql = "DELETE FROM Reserver WHERE id = :idSession AND id_Utilisateur = :idUtilisateur";
+        $stmt = $this->prepare($sql);
+        $stmt->bindParam(':idSession', $idSession, PDO::PARAM_INT);
+        $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la suppression de réservation : " . $e->getMessage());
+        return false;
+    }
+}
+
 }
 ?>
