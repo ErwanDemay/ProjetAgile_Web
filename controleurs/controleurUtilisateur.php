@@ -10,10 +10,10 @@ $action= "consultation";}
 
 // Initialiser le DAO
 $UtilisateurDAO = new UtilisateurDAO();
+$connexionBD = new SessionDAO();
 
 switch ($action){
     case 'consultation'    :
-        $connexionBD = new SessionDAO();
                         if(isset($_SESSION['utilisateurConnecte'])){ 
                           $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
                           require_once("./vues/v_profile.php");

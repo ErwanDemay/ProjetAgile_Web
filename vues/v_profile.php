@@ -17,7 +17,7 @@ $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
 
     <div class="logbut">
         <a href="index.php?controleur=utilisateurs&action=changerMotDePasse" class='card-button'>Changer votre mot de passe</a>
-        <a href="index.php?controleur=utilisateurs&action=connexion" class='card-button'>Déconnexion</a><br>
+        <a href="index.php?controleur=utilisateurs&action=connexion" class='card-button'>Déconnexion</a><br><br>
     </div>
 
 <?php
