@@ -1,6 +1,7 @@
 <?php
 require_once("./modeles/Utilisateur.php");
 require_once("./modeles/DAO/UtilisateurDAO.php");
+require_once("./modeles/DAO/SessionDAO.php");
 
 if (isset($_GET['action'])){
     $action=filter_var($_GET['action'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -154,6 +155,28 @@ switch ($action){
                             }
                         }
                         header("Location: ./index.php?controleur=utilisateurs&action=gestion");
+                        exit();
+                        break;
+    case 'voirSessionsUtilisateur':
+                        $connexionBD = new SessionDAO();
+
+                        $idUtilisateur = $_GET['id'];
+
+                        $lesSessions = $connexionBD->getSessionsReserveesParUtilisateur($idUtilisateur);
+                    
+                        // Vérifier si un utilisateur est connecté
+                        $utilisateurConnecte = null;
+                        if (isset($_SESSION['utilisateurConnecte'])) {
+                            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+                        }
+
+                        if(isset($_GET['idSession'])){
+                            $connexionBD->supprimerReservation($idUtilisateur, $_GET['idSession']);
+                            $lesSessions = $connexionBD->getSessionsReserveesParUtilisateur($idUtilisateur);
+                        }
+                    
+                        // Passer les variables à la vue
+                        require_once("./vues/v_sessionsReservees.php");
                         break;
 }
 ?>
