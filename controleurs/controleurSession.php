@@ -13,11 +13,12 @@ switch ($action){
         $connexionBD = new SessionDAO();
         $recetteDAO = new RecetteDAO();
     
+        // Vérifier si un filtre de recette est appliqué
         if (isset($_GET['filtre']) && !empty($_GET['filtre'])) {
             $idRecette = filter_var($_GET['filtre'], FILTER_SANITIZE_NUMBER_INT);
-    
             $laRecette = $recetteDAO->getRecetteById($idRecette);
     
+            // Si la recette existe, on récupère les sessions associées
             if ($laRecette) {
                 $lesSessions = $connexionBD->getSessionsByRecette($idRecette);
             } else {
@@ -26,12 +27,19 @@ switch ($action){
                 exit();
             }
         } else {
+            // Récupérer toutes les sessions si aucun filtre
             $lesSessions = $connexionBD->getLesSessions();
         }
     
-        require_once("./vues/v_sessions.php");
-        break;
+        // Vérifier si un utilisateur est connecté
+        $utilisateurConnecte = null;
+        if (isset($_SESSION['utilisateurConnecte'])) {
+            $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
+        }
     
+        // Passer les variables à la vue
+        require_once("./vues/v_sessions.php");
+        break;    
 
     case 'addSession'    :
     // Vérification des droits
@@ -223,6 +231,28 @@ switch ($action){
         }
         header('Location: index.php?controleur=sessions');
         exit();
+        break;
+
+    case 'reserverUneSession':
+
+        // Récupérer l'ID de la session à modifier
+        $id = $_GET['id'];
+        
+        // Créer une instance de SessionDAO pour récupérer la session
+        $connexionBD = new SessionDAO();
+        $laSession = $connexionBD->getUneSession($id);  // Il faut créer cette méthode pour récupérer une session par ID
+        
+        $connexionBD->addReservation($utilisateurConnecte->getId(), $id);
+        header("Location: ./index.php?controleur=sessions&action=consultationSessions&filtre=$id");
+        break;
+
+    case "desinscrireUneSession":
+        $idSession = $_GET['id'];
+
+        $utilisateur = unserialize($_SESSION['utilisateurConnecte']);
+        $sessionDAO = new SessionDAO();
+        $sessionDAO->supprimerReservation($utilisateur->getId(), $idSession);
+        header("Location: ./index.php?controleur=sessions&action=consultationSessions&filtre=$idSession");
         break;
 }
 ?>
