@@ -13,11 +13,11 @@ $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
 </head>
 <body>
     <h1>Votre profil</h1>
-    <p>Adresse mail : <?= htmlspecialchars($utilisateurConnecte->getMail()) ?></p>
+    <p>Adresse mail : <?= htmlspecialchars($utilisateurConnecte->getMail()) ?></p><br>
 
     <div class="logbut">
-        <a href="index.php?controleur=utilisateurs&action=changerMotDePasse"><button>Changer votre mot de passe</button></a>
-        <a href="index.php?controleur=utilisateurs&action=connexion"><button>Déconnexion</button></a>
+        <a href="index.php?controleur=utilisateurs&action=changerMotDePasse" class='card-button'>Changer votre mot de passe</a>
+        <a href="index.php?controleur=utilisateurs&action=connexion" class='card-button'>Déconnexion</a><br>
     </div>
 
 <?php
