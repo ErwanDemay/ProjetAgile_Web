@@ -358,10 +358,10 @@ public function supprimerReservation($idUtilisateur, $idSession) {
 }
 
 public function getSessionsReserveesParUtilisateur($idUtilisateur) {
-    $sql = "SELECT s.* 
-            FROM Session s 
-            INNER JOIN Reserver r ON s.id = r.id 
-            WHERE r.id_Utilisateur = :idUtilisateur";
+    $sql = "SELECT Session.* 
+            FROM Session
+            INNER JOIN Reserver ON Session.id = Reserver.id
+            WHERE Reserver.id_Utilisateur = :idUtilisateur";
     
     $stmt = $this->prepare($sql);
     $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
