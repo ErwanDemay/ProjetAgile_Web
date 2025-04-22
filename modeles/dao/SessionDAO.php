@@ -357,5 +357,33 @@ public function supprimerReservation($idUtilisateur, $idSession) {
     }
 }
 
+public function getSessionsReserveesParUtilisateur($idUtilisateur) {
+    $sql = "SELECT s.* 
+            FROM Session s 
+            INNER JOIN Reserver r ON s.id = r.id 
+            WHERE r.id_Utilisateur = :idUtilisateur";
+    
+    $stmt = $this->prepare($sql);
+    $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $sessions = [];
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $session = new Session(
+            $row['id'],
+            $row['nomSession'],
+            $row['dateSession'],
+            $row['heureDebut'],
+            $row['heureFin'],
+            $row['prix'],
+            $row['nbPlaces']
+        );
+        $sessions[] = $session;
+    }
+
+    return $sessions;
+}
+
 }
 ?>

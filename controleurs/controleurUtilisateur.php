@@ -1,6 +1,7 @@
 <?php
 require_once("./modeles/Utilisateur.php");
 require_once("./modeles/DAO/UtilisateurDAO.php");
+require_once("./modeles/DAO/SessionDAO.php");
 
 if (isset($_GET['action'])){
     $action=filter_var($_GET['action'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -12,6 +13,7 @@ $UtilisateurDAO = new UtilisateurDAO();
 
 switch ($action){
     case 'consultation'    :
+        $connexionBD = new SessionDAO();
                         if(isset($_SESSION['utilisateurConnecte'])){ 
                           $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
                           require_once("./vues/v_profile.php");

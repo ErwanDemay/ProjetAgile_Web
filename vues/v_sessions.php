@@ -171,10 +171,5 @@ if (isset($_SESSION['utilisateurConnecte'])) {
     opacity: 1;
 }
 </style>
-<script>
-    function refreshPage() {
-        location.reload();  // Cette fonction recharge la page actuelle
-    }
-</script>
 </body>
 </html>

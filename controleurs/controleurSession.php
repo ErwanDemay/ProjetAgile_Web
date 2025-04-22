@@ -264,5 +264,19 @@ switch ($action){
             header("Location: ./index.php?controleur=sessions&action=consultationSessions");
         }
         break;
+
+    case "desinscrireUneSessionProfil":
+        $idSession = $_GET['id'];
+
+        $utilisateur = unserialize($_SESSION['utilisateurConnecte']);
+        $sessionDAO = new SessionDAO();
+        $sessionDAO->supprimerReservation($utilisateur->getId(), $idSession);
+        if(isset($_GET['filtre'])){
+            $filtre=$_GET['filtre'];
+            header("Location: ./index.php?controleur=utilisateurs&action=consultation&filtre=$filtre");
+        }else{
+            header("Location: ./index.php?controleur=utilisateurs&action=consultation");
+        }
+        break;
 }
 ?>
