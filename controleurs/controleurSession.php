@@ -243,7 +243,7 @@ switch ($action){
         $laSession = $connexionBD->getUneSession($id);  // Il faut créer cette méthode pour récupérer une session par ID
         
         $connexionBD->addReservation($utilisateurConnecte->getId(), $id);
-        header("Location: ./index.php?controleur=sessions&action=consultationSessions");
+        header("Location: ./index.php?controleur=sessions&action=consultationSessions&filtre=$id");
         break;
 
     case "desinscrireUneSession":
@@ -252,7 +252,7 @@ switch ($action){
         $utilisateur = unserialize($_SESSION['utilisateurConnecte']);
         $sessionDAO = new SessionDAO();
         $sessionDAO->supprimerReservation($utilisateur->getId(), $idSession);
-        header("Location: ./index.php?controleur=sessions&action=consultationSessions");
+        header("Location: ./index.php?controleur=sessions&action=consultationSessions&filtre=$idSession");
         break;
 }
 ?>
