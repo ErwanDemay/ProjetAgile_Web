@@ -8,7 +8,7 @@
 <body>
 <h1>Prochaines sessions</h1>
 <?php if (isset($laRecette)) { ?>
-    <h2>Sessions associées à la recette : <?= htmlspecialchars($laRecette->getLibelle()) ?></h2>
+    <h2>Sessions associées à la recette : <?= $laRecette->getLibelle() ?></h2>
 <?php }
 if (isset($_SESSION['utilisateurConnecte'])) {
     $utilisateurConnecte = unserialize($_SESSION['utilisateurConnecte']);
@@ -125,12 +125,21 @@ if (isset($_SESSION['utilisateurConnecte'])) {
                         echo "</tr>";  
                     } elseif ($utilisateurConnecte->getRole() === "user") {
                         echo "<td>";
-                        if ($connexionBD->aReserveSession($utilisateurConnecte->getId(), $Session->getId())) {
-                            echo "<a href='./index.php?controleur=sessions&action=desinscrireUneSession&id=" . $Session->getId() . "' class='card-button red-button'>Se désinscrire</a>";
-                        } else {
-                            echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "' class='card-button'>Réserver</a>";
-                        }                        echo "</td>";
-                        echo "</tr>";  
+                        if(isset($_GET['filtre'])){
+                            if ($connexionBD->aReserveSession($utilisateurConnecte->getId(), $Session->getId())) {
+                                echo "<a href='./index.php?controleur=sessions&action=desinscrireUneSession&id=" . $Session->getId() . "&filtre=" . $_GET['filtre'] . "' class='card-button red-button'>Se désinscrire</a>";
+                            } else {
+                                echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "&filtre=" . $_GET['filtre'] . "' class='card-button'>Réserver</a>";
+                            }                        echo "</td>";
+                            echo "</tr>"; 
+                        }else{
+                            if ($connexionBD->aReserveSession($utilisateurConnecte->getId(), $Session->getId())) {
+                                echo "<a href='./index.php?controleur=sessions&action=desinscrireUneSession&id=" . $Session->getId() . "' class='card-button red-button'>Se désinscrire</a>";
+                            } else {
+                                echo "<a href='./index.php?controleur=sessions&action=reserverUneSession&id=" . $Session->getId() . "' class='card-button'>Réserver</a>";
+                            }                        echo "</td>";
+                            echo "</tr>"; 
+                        }
                     }
                 }                              
             }
@@ -162,10 +171,5 @@ if (isset($_SESSION['utilisateurConnecte'])) {
     opacity: 1;
 }
 </style>
-<script>
-    function refreshPage() {
-        location.reload();  // Cette fonction recharge la page actuelle
-    }
-</script>
 </body>
 </html>
