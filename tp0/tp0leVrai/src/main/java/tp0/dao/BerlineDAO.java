@@ -1,0 +1,98 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package tp0.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+
+import tp0.metier.Marque;
+import tp0.metier.Berline;
+
+
+
+
+/**
+ *
+ * @author Utilisateur
+ */
+public class BerlineDAO extends ConnexionMysql{
+    public BerlineDAO(String theDriver, String theBDD, String theUser,  String thePwd){
+        super(theDriver, theBDD, theUser,  thePwd);
+    }
+    
+    public boolean ajouter(Berline uneBerline){
+        
+        try {
+            String requete = "INSERT INTO `berline`(`id`, `nom`, `nbPortes`, `nbChevaux`, `poids`, `nbPersonnesMax`, `idMarque`)"
+              + "VALUES ("+uneBerline.getId()+",'"+uneBerline.getNom()+"',"+uneBerline.getNbPortes()+","+uneBerline.getPuissance()+","+uneBerline.getPoids()+","+uneBerline.getNbPersonnes()+","+uneBerline.getMarque().getId()+");";
+
+            Statement state = cnx.createStatement();
+            state.executeUpdate(requete);
+
+            System.out.println("La berline vient d'être ajoutée : ");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("La berline N'a PAS pu être ajoutée : ");e.printStackTrace();
+            return false; 
+        }
+    }
+    
+    public boolean ajouter2(Berline uneBerline) {
+    try {
+        String requete = "INSERT INTO `modele`(`id`, `nom`, `nbPortes`, `nbChevaux`, `poids`, `idMarque`, `nbPersonnesMax`, `type`) "
+                + "VALUES (" + uneBerline.getId() + ", '" + uneBerline.getNom() + "', "
+                + uneBerline.getNbPortes() + ", " + uneBerline.getPuissance() + ", "
+                + uneBerline.getPoids() + ", " + uneBerline.getMarque().getId() + ", "
+                + uneBerline.getNbPersonnes() + ", 'berline');";
+        
+        Statement state = cnx.createStatement();
+        state.executeUpdate(requete);
+        
+        System.out.println("La berline vient d'être ajoutée");
+        return true;
+    } catch (SQLException e) {
+        System.out.println("La berline n'a pas pu être ajoutée: ");
+        e.printStackTrace();
+        return false;
+    }
+}
+
+    
+    
+    public ArrayList<Berline> getLesBerlines(){
+        
+        try {
+            String requete = "SELECT * FROM berline;";
+            Statement state = cnx.createStatement();
+            ResultSet lesLignes = state.executeQuery(requete);
+            
+            ArrayList<Berline> tabLesLignes = new ArrayList();
+            
+            while(lesLignes.next()) {
+                Marque uneMarque = new Marque(lesLignes.getInt(7), "Non renseigne");
+                Berline unExempleDeBerline = new Berline(lesLignes.getInt(1), lesLignes.getString(2), lesLignes.getInt(3), lesLignes.getInt(4),lesLignes.getInt(5),uneMarque, lesLignes.getInt(6));
+                tabLesLignes.add(unExempleDeBerline);
+            }
+            lesLignes.close(); 
+            
+            return tabLesLignes;
+
+        } catch (SQLException e) {
+            System.out.println("les berlines n'ont pas été récupérées : ");e.printStackTrace();
+            return null; 
+        }
+    }
+    
+    
+    public void close() throws SQLException{
+        this.cnx.close();
+    }
+    
+    
+}
