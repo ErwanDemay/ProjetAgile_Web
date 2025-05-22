@@ -86,3 +86,14 @@ CREATE TABLE Proposer(
 	,CONSTRAINT Proposer_Session0_FK FOREIGN KEY (id_Session) REFERENCES Session(id)
 )ENGINE=InnoDB;
 
+CREATE TABLE Chef(
+        id          Int  Auto_increment  NOT NULL ,
+        id_Session Int NOT NULL,
+        nomChef  varchar (50) NOT NULL ,
+    	prenomChef varchar(50) NOT NULL,
+    	telChef varchar(50) NOT NULL,
+    	mailChef varchar(50) NOT NULL
+	,CONSTRAINT Chef_PK PRIMARY KEY (id)
+    ,CONSTRAINT Chef_Session0_FK FOREIGN KEY (id_Session) REFERENCES Session(id)
+
+)ENGINE=InnoDB;
